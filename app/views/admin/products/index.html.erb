@@ -14,7 +14,7 @@
         <th class="text-left py-3 px-4 text-gray-600 font-semibold">Name</th>
         <th class="text-left py-3 px-4 text-gray-600 font-semibold">Slug</th>
         <th class="text-right py-3 px-4 text-gray-600 font-semibold">Price</th>
-        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Sizes</th>
+        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Options</th>
         <th class="text-center py-3 px-4 text-gray-600 font-semibold">Custom Name</th>
         <th class="text-center py-3 px-4 text-gray-600 font-semibold">Active</th>
         <th class="text-right py-3 px-4 text-gray-600 font-semibold"></th>
@@ -33,7 +33,7 @@
           <td class="py-3 px-4 text-gray-900 font-medium"><%= product.name %></td>
           <td class="py-3 px-4 text-gray-400 font-mono text-xs"><%= product.slug %></td>
           <td class="py-3 px-4 text-right text-gray-900 font-medium"><%= naira(product.base_price) %></td>
-          <td class="py-3 px-4 text-center"><%= product.has_sizes? ? "✅" : "—" %></td>
+          <td class="py-3 px-4 text-center text-xs"><%= product.has_options? ? product.options.map { |o| o["name"] }.join(", ") : "—" %></td>
           <td class="py-3 px-4 text-center"><%= product.has_custom_name? ? "✅" : "—" %></td>
           <td class="py-3 px-4 text-center"><%= product.active? ? "✅" : "❌" %></td>
           <td class="py-3 px-4 text-right">
