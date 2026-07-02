@@ -21,15 +21,13 @@
         <div>
           <%= form.label :email_address, "Email Address", class: "block text-xs font-black uppercase tracking-wider mb-2 text-black" %>
           <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username",
-            placeholder: "admin@mssn.com",
             value: params[:email_address],
             class: "neo-input text-sm placeholder:text-gray-400" %>
         </div>
 
         <div>
-          <div class="flex justify-between items-center mb-2">
+          <div class="mb-2">
             <%= form.label :password, "Password", class: "block text-xs font-black uppercase tracking-wider text-black" %>
-            <%= link_to "Forgot?", new_password_path, class: "text-xs font-bold text-accent-3 hover:underline" %>
           </div>
           <%= form.password_field :password, required: true, autocomplete: "current-password",
             placeholder: "••••••••",

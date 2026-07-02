@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   mount ActiveStorageDB::Engine => "/active_storage_db"
 
   resource :session
-  resources :passwords, param: :token
 
   get "up" => "rails/health#show", as: :rails_health_check
 
