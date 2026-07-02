@@ -32,9 +32,9 @@
 
             <!-- Desktop Nav Links -->
             <div class="hidden md:flex items-center gap-6 border-l-2 border-black/10 pl-6">
-              <a href="#products" class="text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase">Collection</a>
-              <a href="#manifesto" class="text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase">The Concept</a>
-              <a href="#faq" class="text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase">FAQs</a>
+              <%= link_to "Collection", root_path(anchor: "products"), class: "text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase" %>
+              <%= link_to "The Concept", root_path(anchor: "manifesto"), class: "text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase" %>
+              <%= link_to "FAQs", root_path(anchor: "faq"), class: "text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase" %>
             </div>
           </div>
 
@@ -43,9 +43,7 @@
               <%= link_to "ADMIN PORTAL", admin_path, class: "text-xs text-accent-3 font-extrabold tracking-widest hover:underline" %>
               <%= button_to "LOG OUT", session_path, method: :delete, class: "text-xs text-accent-2 font-extrabold tracking-widest bg-transparent border-none cursor-pointer hover:underline" %>
             <% else %>
-              <a href="#products" class="border-2 border-black px-5 py-2.5 rounded-[20px] font-extrabold text-xs uppercase hover:bg-black hover:text-white transition-all text-black cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5">
-                GRAB GEAR →
-              </a>
+              <%= link_to "GRAB GEAR →", root_path(anchor: "products"), class: "border-2 border-black px-5 py-2.5 rounded-[20px] font-extrabold text-xs uppercase hover:bg-black hover:text-white transition-all text-black cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5" %>
             <% end %>
           </div>
         </div>
@@ -100,7 +98,7 @@
           </div>
           <div class="flex flex-col md:items-end justify-center gap-6">
             <div class="flex gap-4">
-              <a href="#products" class="neo-btn-yellow">Grab Your Merch ✦</a>
+              <%= link_to "Grab Your Merch ✦", root_path(anchor: "products"), class: "neo-btn-yellow" %>
             </div>
             <div class="text-left md:text-right text-xs text-gray-500 mt-4">
               <p class="font-bold">FUTMINNA Muslim Students' Society (MSSN)</p>
