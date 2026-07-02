@@ -84,7 +84,12 @@
               <span class="text-xs uppercase font-extrabold text-black"><%= order.status.humanize %></span>
             </td>
             <td class="py-3.5 px-6 text-right">
-              <%= link_to "View →", admin_order_path(order), class: "text-accent-3 hover:text-black font-bold transition-colors" %>
+              <div class="flex items-center justify-end gap-3.5">
+                <%= link_to "View →", admin_order_path(order), class: "text-accent-3 hover:text-black font-bold transition-colors" %>
+                <%= button_to "Delete", admin_order_path(order), method: :delete,
+                  form: { data: { turbo_confirm: "Are you sure you want to permanently delete order ##{order.reference}?" } },
+                  class: "text-accent-2 hover:text-red-700 font-bold transition-colors border-none bg-transparent cursor-pointer text-xs" %>
+              </div>
             </td>
           </tr>
         <% end %>
