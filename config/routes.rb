@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActiveStorageDB::Engine => "/active_storage_db"
+
   resource :session
   resources :passwords, param: :token
 

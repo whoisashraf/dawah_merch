@@ -8,6 +8,8 @@ gem "propshaft"
 gem "sqlite3", ">= 2.1", group: [:development, :test]
 # PostgreSQL adapter for production (Neon DB)
 gem "pg"
+# Database storage service for Active Storage (required for stateless deployment on Belmo.io)
+gem "active_storage_db"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
