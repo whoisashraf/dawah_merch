@@ -8,7 +8,7 @@ class Admin::ProductionController < Admin::BaseController
       size_option["values"].each do |size|
         count = OrderItem.joins(:order)
           .where(product: product, orders: { payment_status: "paid" })
-          .where("selected_options->>'Size' = ?", size)
+          .where(selected_options: { Size: size })
           .sum(:quantity)
         sizes[size] = count if count > 0
       end

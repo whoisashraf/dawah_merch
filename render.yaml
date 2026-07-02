@@ -17,9 +17,7 @@ services:
         value: production
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: TURSO_DATABASE_URL
-        sync: false
-      - key: TURSO_AUTH_TOKEN
+      - key: DATABASE_URL
         sync: false
       - key: PAYSTACK_SECRET_KEY
         sync: false

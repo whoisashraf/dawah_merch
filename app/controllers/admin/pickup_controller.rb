@@ -2,7 +2,12 @@ class Admin::PickupController < Admin::BaseController
   def index
     if params[:q].present?
       query = "%#{params[:q]}%"
-      @orders = Order.paid.where("reference LIKE ? OR student_name LIKE ? OR phone LIKE ?", query, query, query).order(created_at: :desc)
+      table = Order.arel_table
+      @orders = Order.paid.where(
+        table[:reference].matches(query)
+          .or(table[:student_name].matches(query))
+          .or(table[:phone].matches(query))
+      ).order(created_at: :desc)
     else
       @orders = Order.uncollected.order(created_at: :desc)
     end
