@@ -9,4 +9,4 @@ unless User.exists?(email_address: admin_email)
     admin: true
   )
   puts "Admin user created: #{admin_email}"
-end
+  end
