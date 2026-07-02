@@ -49,7 +49,7 @@ class Admin::OrdersController < Admin::BaseController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-    redirect_to admin_orders_path, notice: "Order deleted successfully."
+    redirect_to admin_orders_path, notice: "Order deleted successfully.", status: :see_other
   end
 
   private
