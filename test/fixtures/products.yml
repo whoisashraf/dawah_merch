@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slug: MyString
+  base_price: 1
+  has_sizes: false
+  has_custom_name: false
+  custom_name_fee: 1
+  active: false
+
+two:
+  name: MyString
+  slug: MyString
+  base_price: 1
+  has_sizes: false
+  has_custom_name: false
+  custom_name_fee: 1
+  active: false

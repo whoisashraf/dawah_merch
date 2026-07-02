@@ -1,0 +1,51 @@
+<div class="flex justify-between items-center mb-6">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900">Products</h1>
+    <p class="text-gray-500 text-sm mt-1">Manage your merchandise catalog</p>
+  </div>
+  <%= link_to "New Product", new_admin_product_path, class: "bg-gray-900 hover:bg-gray-800 text-white font-medium py-2.5 px-5 rounded-xl text-sm transition-colors" %>
+</div>
+
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+  <table class="w-full text-sm">
+    <thead class="bg-gray-50 border-b border-gray-200">
+      <tr>
+        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Image</th>
+        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Name</th>
+        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Slug</th>
+        <th class="text-right py-3 px-4 text-gray-600 font-semibold">Price</th>
+        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Sizes</th>
+        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Custom Name</th>
+        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Active</th>
+        <th class="text-right py-3 px-4 text-gray-600 font-semibold"></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-100">
+      <% @products.each do |product| %>
+        <tr class="hover:bg-gray-50">
+          <td class="py-3 px-4">
+            <% if product.images.attached? && product.images.any? %>
+              <%= image_tag product.images.first, class: "w-10 h-10 rounded-lg object-cover" %>
+            <% else %>
+              <span class="text-2xl"><%= product_icon(product) %></span>
+            <% end %>
+          </td>
+          <td class="py-3 px-4 text-gray-900 font-medium"><%= product.name %></td>
+          <td class="py-3 px-4 text-gray-400 font-mono text-xs"><%= product.slug %></td>
+          <td class="py-3 px-4 text-right text-gray-900 font-medium"><%= naira(product.base_price) %></td>
+          <td class="py-3 px-4 text-center"><%= product.has_sizes? ? "✅" : "—" %></td>
+          <td class="py-3 px-4 text-center"><%= product.has_custom_name? ? "✅" : "—" %></td>
+          <td class="py-3 px-4 text-center"><%= product.active? ? "✅" : "❌" %></td>
+          <td class="py-3 px-4 text-right">
+            <%= link_to "Edit", edit_admin_product_path(product), class: "text-emerald-600 hover:text-emerald-700 text-sm font-medium" %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @products.empty? %>
+        <tr>
+          <td colspan="8" class="py-12 text-center text-gray-400">No products yet — <%= link_to "add one", new_admin_product_path, class: "text-emerald-600 hover:text-emerald-700 font-medium" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

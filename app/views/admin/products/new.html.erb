@@ -1,0 +1,97 @@
+<div class="max-w-2xl">
+  <div class="mb-6">
+    <%= link_to "← Products", admin_products_path, class: "text-sm text-gray-400 hover:text-gray-600" %>
+  </div>
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">New Product</h1>
+
+  <%= form_with model: @product, url: admin_products_path, class: "space-y-4" do |f| %>
+    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 space-y-5">
+      <div>
+        <%= f.label :name, class: "block text-sm font-semibold text-gray-800 mb-1.5" %>
+        <%= f.text_field :name, required: true, placeholder: "e.g. Dawah Week Hoodie",
+          class: "w-full rounded-xl border-gray-400 bg-white px-4 py-2.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
+      </div>
+
+      <div>
+        <%= f.label :base_price, "Base Price (₦)", class: "block text-sm font-semibold text-gray-800 mb-1.5" %>
+        <%= f.number_field :base_price, required: true, min: 1, placeholder: "e.g. 6000",
+          class: "w-full rounded-xl border-gray-400 bg-white px-4 py-2.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
+        <p class="text-xs text-gray-400 mt-1.5">Price in Naira. Enter amount your customers will see.</p>
+      </div>
+
+      <!-- Options Builder -->
+      <div>
+        <span class="block text-sm font-semibold text-gray-800 mb-1.5">Options (e.g. Size, Color)</span>
+        <p class="text-xs text-gray-400 mb-3">Define selectable options like size or color. Enter each value separated by a comma.</p>
+        <div id="option-rows" class="space-y-2">
+          <% (@product.options || []).each_with_index do |option, i| %>
+            <div class="option-row flex gap-2 items-start">
+              <input type="text" name="product[options_config][<%= i %>][name]" value="<%= option['name'] %>"
+                placeholder="e.g. Size"
+                class="flex-1 rounded-lg border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm">
+              <input type="text" name="product[options_config][<%= i %>][values]" value="<%= option['values'].join(', ') %>"
+                placeholder="e.g. XXL, XL, L"
+                class="flex-[2] rounded-lg border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm">
+              <button type="button" onclick="this.closest('.option-row').remove()"
+                class="px-2.5 py-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors text-lg leading-none">×</button>
+            </div>
+          <% end %>
+        </div>
+        <button type="button" id="add-option" onclick="addOptionRow()"
+          class="mt-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium flex items-center gap-1">
+          + Add option
+        </button>
+      </div>
+
+      <div class="pt-3 border-t border-gray-100">
+        <label class="flex items-center gap-2 p-2 rounded-lg border border-gray-200 hover:border-gray-300 cursor-pointer transition-colors inline-flex">
+          <%= f.check_box :has_custom_name, class: "rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" %>
+          <span class="text-sm text-gray-700">Has custom name</span>
+        </label>
+      </div>
+
+      <div>
+        <%= f.label :custom_name_fee, "Custom Name Fee (₦)", class: "block text-sm font-semibold text-gray-800 mb-1.5" %>
+        <%= f.number_field :custom_name_fee, min: 0, placeholder: "e.g. 1000",
+          class: "w-full rounded-xl border-gray-400 bg-white px-4 py-2.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
+        <p class="text-xs text-gray-400 mt-1.5">Extra fee for custom names, in Naira.</p>
+      </div>
+
+      <div>
+        <%= f.label :images, "Images (select multiple for color variants)", class: "block text-sm font-semibold text-gray-800 mb-1.5" %>
+        <%= f.file_field :images, accept: "image/*", multiple: true,
+          class: "w-full rounded-xl border-gray-400 bg-white px-4 py-3 text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-900 file:text-white hover:file:bg-gray-800 cursor-pointer focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
+      </div>
+
+      <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-gray-300 cursor-pointer transition-colors">
+        <%= f.check_box :active, checked: true, class: "rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" %>
+        <span class="text-sm font-medium text-gray-700">Active (visible to customers)</span>
+      </label>
+    </div>
+
+    <div class="flex gap-3">
+      <%= f.submit "Create Product", class: "bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors cursor-pointer" %>
+      <%= link_to "Cancel", admin_products_path, class: "bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-6 rounded-xl transition-colors" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+function addOptionRow() {
+  const container = document.getElementById('option-rows');
+  const idx = container.children.length;
+  const div = document.createElement('div');
+  div.className = 'option-row flex gap-2 items-start';
+  div.innerHTML = `
+    <input type="text" name="product[options_config][${idx}][name]"
+      placeholder="e.g. Size"
+      class="flex-1 rounded-lg border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm">
+    <input type="text" name="product[options_config][${idx}][values]"
+      placeholder="e.g. XXL, XL, L"
+      class="flex-[2] rounded-lg border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm">
+    <button type="button" onclick="this.closest('.option-row').remove()"
+      class="px-2.5 py-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors text-lg leading-none">×</button>
+  `;
+  container.appendChild(div);
+}
+</script>

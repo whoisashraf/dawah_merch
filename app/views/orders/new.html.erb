@@ -1,0 +1,338 @@
+<!-- Hero -->
+<section class="relative overflow-hidden rounded-2xl mb-8 md:mb-12 bg-white border border-gray-200 shadow-sm">
+  <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-amber-50"></div>
+  <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-100/30 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-72 h-72 bg-amber-100/30 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+
+  <div class="relative px-6 py-12 md:py-20 md:px-12 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-50 border border-amber-200 rounded-full text-amber-700 text-xs font-semibold tracking-wide uppercase mb-5">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+      FUTMINNA MSSN Dawah Week 2026
+    </div>
+
+    <h1 class="text-4xl md:text-7xl font-black tracking-tight mb-4">
+      <span class="bg-gradient-to-r from-emerald-800 via-emerald-600 to-amber-600 bg-clip-text text-transparent">DOXACLASM</span>
+      <span class="block text-2xl md:text-4xl text-gray-700 font-bold mt-1">WARFARE</span>
+    </h1>
+
+    <p class="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+      The battle against falsehood begins within. Gear up with exclusive Dawah Week merchandise.
+    </p>
+  </div>
+</section>
+
+<% if @products.any? %>
+  <%= form_with model: @order, url: order_path, html: { id: "order-form" }, data: { turbo: false } do |form| %>
+  <!-- Products -->
+  <section id="products" class="mb-4 scroll-mt-20">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-600 text-white text-sm font-bold shrink-0">1</span>
+      <h2 class="text-xl md:text-2xl font-bold text-gray-900">Choose Your Gear</h2>
+    </div>
+    <p class="text-gray-500 text-sm ml-11 mb-6">Select items below — your total updates automatically.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      <% @products.each_with_index do |product, idx| %>
+        <div class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg product-card selected-card"
+             data-product-id="<%= product.id %>"
+             data-base-price="<%= product.base_price %>"
+             data-custom-name-fee="<%= product.custom_name_fee.to_i %>"
+             data-index="<%= idx %>">
+          <!-- Image Slider -->
+          <div class="slider aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden" data-slider="<%= idx %>">
+            <% if product.images.attached? && product.images.any? %>
+              <% product.images.each_with_index do |img, img_idx| %>
+                <%= image_tag img, class: "slide-img w-full h-full object-cover absolute inset-0", style: (img_idx == 0 ? "" : "display: none"), data_slide: img_idx %>
+              <% end %>
+              <% if product.images.count > 1 %>
+
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  <% product.images.count.times do |dot| %>
+                    <button type="button" class="w-2 h-2 rounded-full transition-all cursor-pointer <%= dot == 0 ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/70' %> slider-dot" data-slide="<%= dot %>"></button>
+                  <% end %>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="w-full h-full flex items-center justify-center">
+                <span class="text-6xl opacity-60"><%= product_icon(product) %></span>
+              </div>
+            <% end %>
+            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5 text-sm font-bold text-emerald-700 shadow-sm border border-emerald-100 z-10">
+              <%= naira(product.base_price) %>
+            </div>
+            <div class="selected-badge absolute top-2 left-2 bg-emerald-600 text-white rounded-full w-7 h-7 flex items-center justify-center shadow-lg z-10" style="display: none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </div>
+          </div>
+
+          <div class="p-3 md:p-4 space-y-3">
+            <h3 class="font-bold text-gray-900 text-sm md:text-base"><%= product.name %></h3>
+
+            <!-- Quantity -->
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide">Qty</span>
+              <div class="flex items-center gap-1">
+                <button type="button" class="qty-btn w-8 h-8 rounded-lg border border-gray-300 text-gray-500 hover:bg-emerald-50 hover:border-emerald-400 hover:text-emerald-600 transition-all font-medium flex items-center justify-center cursor-pointer text-sm md:text-base" data-target="qty_<%= idx %>">−</button>
+                <%= number_field_tag "order[order_items][#{idx}][quantity]", 0, min: 0, max: 99,
+                  id: "qty_#{idx}",
+                  class: "qty-input w-12 text-center rounded-lg border-gray-400 bg-white text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
+                <button type="button" class="qty-btn w-8 h-8 rounded-lg border border-gray-300 text-gray-500 hover:bg-emerald-50 hover:border-emerald-400 hover:text-emerald-600 transition-all font-medium flex items-center justify-center cursor-pointer text-sm md:text-base" data-target="qty_<%= idx %>">+</button>
+              </div>
+              <%= hidden_field_tag "order[order_items][#{idx}][product_id]", product.id %>
+            </div>
+
+            <!-- Dynamic Options -->
+            <% if product.has_options? %>
+              <% product.options.each do |option| %>
+                <div>
+                  <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide block mb-1.5"><%= option["name"] %></span>
+                  <div class="flex gap-1.5 flex-wrap">
+                    <% option["values"].each do |value| %>
+                      <label class="cursor-pointer">
+                        <input type="radio" name="order[order_items][<%= idx %>][selected_options][<%= option["name"] %>]" value="<%= value %>" class="hidden peer" <%= "checked" if option["values"].first == value %>>
+                        <span class="block text-center py-1.5 px-2.5 md:px-3 rounded-lg border border-gray-200 text-xs md:text-sm font-medium text-gray-600 peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 hover:border-gray-400 cursor-pointer transition-all"><%= value %></span>
+                      </label>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <% if product.has_sizes? %>
+                <div>
+                  <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide block mb-1.5">Size</span>
+                  <div class="flex gap-1.5">
+                    <% Product::SIZES.each do |size| %>
+                      <label class="flex-1 cursor-pointer">
+                        <input type="radio" name="order[order_items][<%= idx %>][size]" value="<%= size %>" class="hidden peer">
+                        <span class="block text-center py-1.5 rounded-lg border border-gray-200 text-xs md:text-sm font-medium text-gray-600 peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 hover:border-gray-400 cursor-pointer transition-all"><%= size %></span>
+                      </label>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+
+            <% if product.has_custom_name? %>
+              <div>
+                <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide block mb-1">
+                  Custom Name
+                  <% if product.custom_name_fee.to_i > 0 %>
+                    <span class="text-emerald-600 font-normal normal-case">(+<%= naira(product.custom_name_fee) %>)</span>
+                  <% end %>
+                </span>
+                <%= text_field_tag "order[order_items][#{idx}][custom_name]", nil,
+                  placeholder: "Enter name to print",
+                  maxlength: 30,
+                  class: "w-full rounded-lg border-gray-400 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <!-- Spacer for sticky bar -->
+  <div class="h-20 md:h-24"></div>
+
+  <!-- Sticky Bottom Bar -->
+  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] z-40">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-2.5 md:py-3 flex items-center justify-between gap-3">
+      <div class="min-w-0 flex-1">
+        <span class="text-[11px] md:text-xs text-gray-400 uppercase tracking-wide font-medium">Total</span>
+        <div class="flex items-baseline gap-2 flex-wrap">
+          <span id="live-total" class="text-lg md:text-xl font-bold text-gray-900">₦0</span>
+          <span id="live-count" class="text-xs md:text-sm text-gray-400">(0 items)</span>
+        </div>
+      </div>
+      <button type="button" id="continue-btn"
+        class="shrink-0 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 md:py-3 px-5 md:px-6 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed text-sm md:text-base cursor-pointer"
+        disabled>
+        Continue
+      </button>
+    </div>
+  </div>
+
+  <!-- Checkout (hidden by default) -->
+  <div id="checkout-wrap" class="hidden">
+    <section id="checkout" class="bg-white rounded-2xl border border-gray-200 overflow-hidden mb-12 scroll-mt-24">
+      <div class="px-5 md:px-8 py-4 md:py-5 border-b border-gray-100 bg-gradient-to-r from-emerald-50/50 to-white flex items-center gap-3">
+        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-600 text-white text-sm font-bold shrink-0">2</span>
+        <div class="min-w-0">
+          <h2 class="text-lg md:text-xl font-bold text-gray-900">Delivery Details</h2>
+          <p class="text-gray-500 text-xs md:text-sm">Where should we deliver your order?</p>
+        </div>
+      </div>
+
+      <div class="px-5 md:px-8 py-5 md:py-6 space-y-5 md:space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          <div>
+            <%= form.label :student_name, "Full Name", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.text_field :student_name, required: true, placeholder: "e.g. Ahmad Musa",
+              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+          </div>
+          <div>
+            <%= form.label :email, "Email Address", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.email_field :email, required: true, placeholder: "e.g. student@futminna.edu.ng",
+              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+          </div>
+          <div>
+            <%= form.label :department, "Department", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.text_field :department, required: true, placeholder: "e.g. Computer Engineering",
+              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+          </div>
+          <div>
+            <%= form.label :level, "Level", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.select :level, ["100L", "200L", "300L", "400L", "500L"], { prompt: "Select level" }, required: true,
+              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm text-sm ring-1 ring-gray-300" %>
+          </div>
+          <div class="md:col-span-2">
+            <%= form.label :phone, "Phone Number", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.telephone_field :phone, required: true, placeholder: "e.g. 08031234567",
+              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+          </div>
+        </div>
+
+        <div>
+          <%= form.label :delivery_location, "Delivery Location", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+          <%= form.select :delivery_location, [["Hostel (On-campus)", "hostel"], ["Off Campus (GK)", "off_campus"]], { prompt: "Select delivery location" }, required: true,
+            class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm text-sm ring-1 ring-gray-300" %>
+        </div>
+      </div>
+
+      <div class="px-5 md:px-8 py-4 md:py-5 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+        <div class="text-xs md:text-sm text-gray-400 flex items-center gap-1">
+          <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Secured by Paystack
+        </div>
+        <%= form.submit "Proceed to Payment →",
+          class: "bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 md:py-3 px-5 md:px-8 rounded-xl transition-all duration-200 hover:shadow-lg cursor-pointer text-sm md:text-base" %>
+      </div>
+    </section>
+  </div>
+  <% end %>
+<% else %>
+  <div class="text-center py-16 md:py-20">
+    <div class="text-5xl md:text-6xl mb-6 opacity-30">🏗️</div>
+    <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Collection Coming Soon</h2>
+    <p class="text-gray-500 text-sm md:text-base max-w-md mx-auto">The Dawah Week merchandise collection is being prepared. Check back soon to place your order.</p>
+  </div>
+<% end %>
+
+<script>
+(function() {
+  // --- Slider ---
+  document.querySelectorAll('.slider').forEach(slider => {
+    const imgs = slider.querySelectorAll('.slide-img');
+    const dots = slider.querySelectorAll('.slider-dot');
+    if (imgs.length <= 1) return;
+
+    function show(idx) {
+      imgs.forEach((img, i) => {
+        img.style.display = i === idx ? '' : 'none';
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-white', i === idx);
+        dot.classList.toggle('scale-110', i === idx);
+        dot.classList.toggle('bg-white/50', i !== idx);
+        dot.classList.toggle('hover:bg-white/70', i !== idx);
+      });
+    }
+
+    let current = 0;
+    let interval = setInterval(function() {
+      current = (current + 1) % imgs.length;
+      show(current);
+    }, 3000);
+
+    function resetTimer() {
+      clearInterval(interval);
+      interval = setInterval(function() {
+        current = (current + 1) % imgs.length;
+        show(current);
+      }, 3000);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', function(e) {
+        e.preventDefault();
+        current = i;
+        show(current);
+        resetTimer();
+      });
+    });
+
+
+  });
+
+  // --- Live total + selection indicators ---
+  function updateTotal() {
+    let total = 0;
+    let count = 0;
+    document.querySelectorAll('.selected-card').forEach(card => {
+      const qtyInput = card.querySelector('.qty-input');
+      const qty = parseInt(qtyInput.value) || 0;
+      const badge = card.querySelector('.selected-badge');
+      if (qty > 0) {
+        count += qty;
+        card.classList.add('ring-2', 'ring-emerald-400', 'border-emerald-400', 'shadow-md');
+        badge.style.display = '';
+      } else {
+        card.classList.remove('ring-2', 'ring-emerald-400', 'border-emerald-400', 'shadow-md');
+        badge.style.display = 'none';
+      }
+      if (qty <= 0) return;
+      const basePrice = parseInt(card.dataset.basePrice) || 0;
+      const customFee = parseInt(card.dataset.customNameFee) || 0;
+      const nameInput = card.querySelector('input[placeholder*="Enter name"]');
+      const hasName = nameInput && nameInput.value.trim().length > 0;
+      total += (basePrice + (hasName ? customFee : 0)) * qty;
+    });
+    document.getElementById('live-total').textContent = '₦' + (total / 100).toLocaleString();
+    document.getElementById('live-count').textContent = '(' + count + ' item' + (count !== 1 ? 's' : '') + ')';
+    document.getElementById('continue-btn').disabled = (count === 0);
+  }
+
+  // Quantity buttons
+  document.querySelectorAll('.qty-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const input = document.getElementById(this.dataset.target);
+      if (!input) return;
+      let val = parseInt(input.value) || 0;
+      if (this.textContent.includes('−')) {
+        input.value = Math.max(0, val - 1);
+      } else {
+        input.value = Math.min(99, val + 1);
+      }
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  });
+
+  // Bind change events
+  document.querySelectorAll('.qty-input').forEach(el => {
+    el.addEventListener('change', updateTotal);
+    el.addEventListener('input', updateTotal);
+  });
+  document.querySelectorAll('input[placeholder*="Enter name"]').forEach(el => {
+    el.addEventListener('input', updateTotal);
+  });
+  updateTotal();
+
+  // Continue button
+  var continueBtn = document.getElementById('continue-btn');
+  if (continueBtn) {
+    continueBtn.addEventListener('click', function() {
+      var wrap = document.getElementById('checkout-wrap');
+      if (!wrap) return;
+      wrap.classList.remove('hidden');
+      this.textContent = '↑ Back';
+      this.onclick = function() {
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+      setTimeout(function() {
+        document.getElementById('checkout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    });
+  }
+})();
+</script>
