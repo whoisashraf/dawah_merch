@@ -19,6 +19,7 @@ class Paystack
   end
 
   def verify_webhook(body, signature)
+    return false if @secret_key.blank? || signature.blank?
     hash = OpenSSL::HMAC.hexdigest("SHA256", @secret_key, body)
     ActiveSupport::SecurityUtils.secure_compare(hash, signature)
   end

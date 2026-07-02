@@ -36,6 +36,9 @@ class PaystackWebhookController < ApplicationController
         Rails.logger.warn "[Paystack Webhook] ⚠ Order not found for reference: #{reference}"
       elsif order.paid?
         Rails.logger.info "[Paystack Webhook] Order #{reference} already marked as paid, skipping"
+      elsif amount.to_i != order.total_amount
+        Rails.logger.error "[Paystack Webhook] ⚠ AMOUNT MISMATCH — order total: #{order.total_amount}, paid: #{amount} (ref: #{reference})"
+        order.update!(payment_status: "failed", status: "cancelled")
       else
         order.update!(payment_status: "paid", status: "processing")
         Rails.logger.info "[Paystack Webhook] ✅ Order #{reference} marked as paid"

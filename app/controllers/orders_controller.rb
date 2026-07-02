@@ -20,20 +20,27 @@ class OrdersController < ApplicationController
     @order.build_order_items_from_params(items_params)
 
     if @order.save
-      paystack = Paystack.new
-      email = @order.email
-      response = paystack.initialize_transaction(
-        email: email,
-        amount: total,
-        reference: @order.reference,
-        callback_url: order_success_url(@order.reference)
-      )
+      begin
+        paystack = Paystack.new
+        email = @order.email
+        response = paystack.initialize_transaction(
+          email: email,
+          amount: total,
+          reference: @order.reference,
+          callback_url: order_success_url(@order.reference)
+        )
 
-      if response.body["status"]
-        redirect_to response.body["data"]["authorization_url"], allow_other_host: true
-      else
+        if response.body.is_a?(Hash) && response.body["status"]
+          redirect_to response.body.dig("data", "authorization_url"), allow_other_host: true
+        else
+          @order.destroy!
+          flash[:alert] = "Payment service error. Please try again later."
+          redirect_to new_order_path
+        end
+      rescue Faraday::Error => e
         @order.destroy!
-        flash[:alert] = "Payment could not be processed. Please try again."
+        Rails.logger.error "[Paystack Init] Connection failed for order #{@order.reference}: #{e.message}"
+        flash[:alert] = "Could not connect to payment provider. Please try again."
         redirect_to new_order_path
       end
     else
@@ -45,15 +52,24 @@ class OrdersController < ApplicationController
   def success
     @order = Order.find_by!(reference: params[:reference])
     @whatsapp_group_link = Setting.get("whatsapp_group_link")
+    @verified = false
 
-    paystack = Paystack.new
-    response = paystack.verify_transaction(@order.reference)
+    begin
+      paystack = Paystack.new
+      response = paystack.verify_transaction(@order.reference)
 
-    if response.body["status"] && response.body["data"]["status"] == "success"
-      @order.update(payment_status: "paid", status: "processing") if @order.unpaid?
-      @verified = true
-    else
-      @verified = false
+      if response.body.is_a?(Hash) && response.body["status"] && response.body.dig("data", "status") == "success"
+        amount_paid = response.body.dig("data", "amount").to_i
+        if amount_paid == @order.total_amount
+          @order.update(payment_status: "paid", status: "processing") if @order.unpaid?
+          @verified = true
+        else
+          Rails.logger.error "[Paystack Verify] ⚠ AMOUNT MISMATCH for order #{@order.reference} — expected: #{@order.total_amount}, paid: #{amount_paid}"
+          @order.update(payment_status: "failed", status: "cancelled") if @order.unpaid?
+        end
+      end
+    rescue Faraday::Error => e
+      Rails.logger.error "[Paystack Verify] Connection error verifying transaction #{@order.reference}: #{e.message}"
     end
   end
 
