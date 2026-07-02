@@ -1,96 +1,205 @@
-<!-- Hero -->
-<section class="relative overflow-hidden rounded-2xl mb-8 md:mb-12 bg-white border border-gray-200 shadow-sm">
-  <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-amber-50"></div>
-  <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-100/30 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-72 h-72 bg-amber-100/30 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+<!-- Hero Section -->
+<section class="relative overflow-hidden rounded-card mb-12 bg-primary-bg border-3 border-black shadow-[8px_8px_0px_0px_#000000] grain-bg">
+  <!-- Decorative Sparkles -->
+  <div class="absolute top-8 left-8 animate-float text-3xl font-black sparkle-icon">✦</div>
+  <div class="absolute top-12 right-12 animate-float-delayed text-4xl font-black sparkle-icon">✦</div>
+  <div class="absolute bottom-8 right-24 animate-float text-2xl font-black sparkle-icon">✦</div>
 
-  <div class="relative px-6 py-12 md:py-20 md:px-12 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-50 border border-amber-200 rounded-full text-amber-700 text-xs font-semibold tracking-wide uppercase mb-5">
-      <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-      FUTMINNA MSSN Dawah Week 2026
+  <div class="relative px-6 py-16 md:py-24 md:px-12 text-center max-w-4xl mx-auto">
+    <div class="inline-flex items-center gap-2 mb-6">
+      <span class="sticker-badge sticker-badge-yellow text-xs">LIMITLESS DROP</span>
+      <span class="text-xs font-black uppercase tracking-wider text-black">MSSN FUTMINNA 2026</span>
     </div>
 
-    <h1 class="text-4xl md:text-7xl font-black tracking-tight mb-4">
-      <span class="bg-gradient-to-r from-emerald-800 via-emerald-600 to-amber-600 bg-clip-text text-transparent">DOXACLASM</span>
-      <span class="block text-2xl md:text-4xl text-gray-700 font-bold mt-1">WARFARE</span>
+    <h1 class="font-display font-black text-5xl md:text-8xl tracking-tight leading-none mb-6">
+      THE BATTLE IS WITHIN.<br>
+      <span class="inline-block bg-accent-1 text-black px-6 py-2 border-3 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -rotate-1 transform my-3">
+        DOXACLASM
+      </span>
+      <span class="inline-block font-sans text-3xl md:text-5xl font-black block mt-2 tracking-wider text-accent-2">
+        WARFARE ✦
+      </span>
     </h1>
 
-    <p class="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-      The battle against falsehood begins within. Gear up with exclusive Dawah Week merchandise.
+    <p class="text-gray-800 text-sm md:text-base max-w-lg mx-auto font-medium leading-relaxed mb-8">
+      The battle against falsehood begins within. Gear up with the exclusive merchandise collection. Designed for the community, built for convinction.
     </p>
+
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <a href="#products" class="neo-btn-black w-full sm:w-auto">
+        Grab Your Merch ↓
+      </a>
+      <a href="#manifesto" class="neo-btn-outline w-full sm:w-auto">
+        The Concept →
+      </a>
+    </div>
   </div>
 </section>
 
+<!-- Trust strip / Marquee -->
+<div class="w-full overflow-hidden border-y-3 border-black py-4 bg-white relative my-12 -mx-4 md:-mx-8">
+  <div class="flex whitespace-nowrap animate-marquee gap-8">
+    <% 4.times do %>
+      <span class="text-xs font-black uppercase tracking-widest flex items-center gap-6 text-black select-none">
+        FUTMINNA MSSN <span class="sparkle-icon">✦</span>
+        DAWAH WEEK 2026 <span class="sparkle-icon">✦</span>
+        LIMITLESS TRUTH <span class="sparkle-icon">✦</span>
+        AL-HAQ DESIGNS <span class="sparkle-icon">✦</span>
+        STREETWEAR DROP <span class="sparkle-icon">✦</span>
+      </span>
+    <% end %>
+  </div>
+</div>
+
+<!-- Manifesto / Bento Grid -->
+<section id="manifesto" class="scroll-mt-24 my-20">
+  <div class="text-center mb-12">
+    <span class="text-xs font-black uppercase tracking-widest text-accent-3">THE CONCEPT</span>
+    <h2 class="font-display font-black text-3xl md:text-5xl mt-2">The Manifesto ✦</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <!-- Card 1: Main concept -->
+    <div class="neo-card p-8 bg-primary-bg grain-bg md:col-span-2 flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-black uppercase tracking-wider text-accent-3">01 / THE MISSION</span>
+        <h3 class="font-display font-black text-2xl md:text-3xl my-4">Doxaclasm: Destroying Falsehood</h3>
+        <p class="text-gray-700 text-sm md:text-base leading-relaxed">
+          Doxaclasm is the intellectual dismantling of false opinions and ideologies. Warfare represents the inner spiritual struggle to conquer doubt and seek truth. This drop serves as a uniform of conviction on campus.
+        </p>
+      </div>
+      <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase text-black">
+        <span>LEARN THE WAY</span> <span>→</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Drop Status -->
+    <div class="neo-card-yellow p-8 flex flex-col justify-between">
+      <div>
+        <span class="text-xs font-black uppercase tracking-wider text-black">02 / STATUS REPORT</span>
+        <h3 class="font-display font-black text-3xl md:text-4xl my-4">87% CLAIMED</h3>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-black uppercase tracking-wider">Pre-orders close soon.</p>
+        <p class="text-[10px] text-gray-700 font-bold mt-1">Once print runs end, no restocks. ✦</p>
+      </div>
+    </div>
+
+    <!-- Card 3: Details -->
+    <div class="neo-card p-8 bg-white flex flex-col justify-between border-accent-2">
+      <div>
+        <span class="text-xs font-black uppercase tracking-wider text-accent-2">03 / ON-CAMPUS DISTRIBUTION</span>
+        <h3 class="font-display font-black text-xl my-3">Pickup Spots</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">
+          Select either on-campus Hostel delivery or GK (Gidan Kwano) off-campus pick up during checkout. We'll alert you as soon as they're ready.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 4: Quality -->
+    <div class="neo-card bg-black text-white p-8 relative overflow-hidden grain-bg md:col-span-2 flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start">
+          <span class="sticker-badge sticker-badge-yellow">EXCLUSIVE QUALITY</span>
+          <span class="sparkle-icon text-white text-2xl animate-spin-slow">✦</span>
+        </div>
+        <h3 class="font-display font-black text-2xl md:text-3xl my-4 text-white">Garments Crafted with Conviction</h3>
+        <p class="text-gray-400 text-xs md:text-sm leading-relaxed max-w-lg">
+          Each piece is crafted from premium heavy-weight cotton, featuring custom high-density prints that resist peeling. Finished with individual streetwear labels.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Merchandise Shop -->
 <% if @products.any? %>
   <%= form_with model: @order, url: order_path, html: { id: "order-form" }, data: { turbo: false } do |form| %>
-  <!-- Products -->
-  <section id="products" class="mb-4 scroll-mt-20">
-    <div class="flex items-center gap-3 mb-2">
-      <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-600 text-white text-sm font-bold shrink-0">1</span>
-      <h2 class="text-xl md:text-2xl font-bold text-gray-900">Choose Your Gear</h2>
+  <section id="products" class="scroll-mt-24 my-20">
+    <div class="text-center mb-12">
+      <span class="text-xs font-black uppercase tracking-widest text-accent-3">STEP 01</span>
+      <h2 class="font-display font-black text-3xl md:text-5xl mt-2">Choose Your Gear ✦</h2>
+      <p class="text-gray-600 text-sm mt-2 max-w-md mx-auto">Select quantities and styles below. Your total is tracked dynamically.</p>
     </div>
-    <p class="text-gray-500 text-sm ml-11 mb-6">Select items below — your total updates automatically.</p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+    <!-- Irregular Grid layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
       <% @products.each_with_index do |product, idx| %>
-        <div class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg product-card selected-card"
+        <!-- Alternating rotations and offsets for irregular streetwear feel -->
+        <% 
+          rotation_class = ["rotate-1", "-rotate-1", "rotate-0"][idx % 3] 
+          offset_class = idx % 2 == 1 ? "md:translate-y-4" : ""
+          shape_class = ["organic-shape-1", "organic-shape-2", "organic-shape-3"][idx % 3]
+        %>
+        <div class="neo-card bg-white p-4 flex flex-col justify-between transition-all duration-300 product-card selected-card transform <%= rotation_class %> <%= offset_class %>"
              data-product-id="<%= product.id %>"
              data-base-price="<%= product.base_price %>"
              data-custom-name-fee="<%= product.custom_name_fee.to_i %>"
              data-index="<%= idx %>">
-          <!-- Image Slider -->
-          <div class="slider aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden" data-slider="<%= idx %>">
-            <% if product.images.attached? && product.images.any? %>
-              <% product.images.each_with_index do |img, img_idx| %>
-                <%= image_tag img, class: "slide-img w-full h-full object-cover absolute inset-0", style: (img_idx == 0 ? "" : "display: none"), data_slide: img_idx %>
+          
+          <!-- Image slider and Tag overlap -->
+          <div class="relative mb-4">
+            <!-- Organic frame crop wrapper -->
+            <div class="<%= shape_class %> aspect-[4/3] relative overflow-hidden bg-primary-bg flex items-center justify-center">
+              <% if product.images.attached? && product.images.any? %>
+                <% product.images.each_with_index do |img, img_idx| %>
+                  <%= image_tag img, class: "slide-img w-full h-full object-cover absolute inset-0 transition-opacity duration-300", style: (img_idx == 0 ? "" : "display: none; opacity: 0;"), data_slide: img_idx %>
+                <% end %>
+                <% if product.images.count > 1 %>
+                  <!-- Dots -->
+                  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 bg-black/40 px-2 py-1 rounded-full backdrop-blur-xs">
+                    <% product.images.count.times do |dot| %>
+                      <button type="button" class="w-1.5 h-1.5 rounded-full transition-all cursor-pointer <%= dot == 0 ? 'bg-accent-1 scale-125' : 'bg-white/60 hover:bg-white' %> slider-dot" data-slide="<%= dot %>"></button>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="text-6xl animate-float"><%= product_icon(product) %></div>
               <% end %>
-              <% if product.images.count > 1 %>
 
-                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                  <% product.images.count.times do |dot| %>
-                    <button type="button" class="w-2 h-2 rounded-full transition-all cursor-pointer <%= dot == 0 ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/70' %> slider-dot" data-slide="<%= dot %>"></button>
-                  <% end %>
-                </div>
-              <% end %>
-            <% else %>
-              <div class="w-full h-full flex items-center justify-center">
-                <span class="text-6xl opacity-60"><%= product_icon(product) %></span>
+              <!-- Selected Badge -->
+              <div class="selected-badge absolute inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center transition-all duration-200" style="display: none">
+                <span class="w-12 h-12 rounded-full bg-accent-1 border-3 border-black flex items-center justify-center text-black font-black text-xl shadow-[2px_2px_0px_0px_#000000] rotate-12">✓</span>
               </div>
-            <% end %>
-            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5 text-sm font-bold text-emerald-700 shadow-sm border border-emerald-100 z-10">
-              <%= naira(product.base_price) %>
             </div>
-            <div class="selected-badge absolute top-2 left-2 bg-emerald-600 text-white rounded-full w-7 h-7 flex items-center justify-center shadow-lg z-10" style="display: none">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+
+            <!-- Price Tag Sticker overlap -->
+            <div class="absolute -top-3 -right-3 bg-accent-1 text-black border-2 border-black rounded-full w-16 h-16 flex flex-col items-center justify-center font-black text-[11px] shadow-[3px_3px_0px_0px_#000000] rotate-12 z-20">
+              <span class="text-[9px] text-gray-700 leading-none">ONLY</span>
+              <span class="leading-tight"><%= naira(product.base_price) %></span>
             </div>
           </div>
 
-          <div class="p-3 md:p-4 space-y-3">
-            <h3 class="font-bold text-gray-900 text-sm md:text-base"><%= product.name %></h3>
+          <!-- Product description & controls -->
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-display font-black text-xl text-black uppercase tracking-tight"><%= product.name %></h3>
+              <p class="text-xs text-gray-500 mt-1 font-bold">LIMITED SERIES DROP ✦</p>
+            </div>
 
-            <!-- Quantity -->
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide">Qty</span>
-              <div class="flex items-center gap-1">
-                <button type="button" class="qty-btn w-8 h-8 rounded-lg border border-gray-300 text-gray-500 hover:bg-emerald-50 hover:border-emerald-400 hover:text-emerald-600 transition-all font-medium flex items-center justify-center cursor-pointer text-sm md:text-base" data-target="qty_<%= idx %>">−</button>
+            <!-- Quantity Tactile controls -->
+            <div class="flex items-center justify-between border-2 border-black p-2 rounded-lg bg-primary-bg/30">
+              <span class="text-xs font-black uppercase tracking-wider text-gray-700">Quantity</span>
+              <div class="flex items-center gap-1.5">
+                <button type="button" class="qty-btn w-9 h-9 rounded-lg border-2 border-black bg-white text-black hover:bg-accent-1 active:translate-y-0.5 transition-all font-black flex items-center justify-center cursor-pointer text-sm" data-target="qty_<%= idx %>">−</button>
                 <%= number_field_tag "order[order_items][#{idx}][quantity]", 0, min: 0, max: 99,
                   id: "qty_#{idx}",
-                  class: "qty-input w-12 text-center rounded-lg border-gray-400 bg-white text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
-                <button type="button" class="qty-btn w-8 h-8 rounded-lg border border-gray-300 text-gray-500 hover:bg-emerald-50 hover:border-emerald-400 hover:text-emerald-600 transition-all font-medium flex items-center justify-center cursor-pointer text-sm md:text-base" data-target="qty_<%= idx %>">+</button>
+                  class: "qty-input w-12 text-center border-none bg-transparent text-sm font-black focus:outline-none" %>
+                <button type="button" class="qty-btn w-9 h-9 rounded-lg border-2 border-black bg-white text-black hover:bg-accent-1 active:translate-y-0.5 transition-all font-black flex items-center justify-center cursor-pointer text-sm" data-target="qty_<%= idx %>">+</button>
               </div>
               <%= hidden_field_tag "order[order_items][#{idx}][product_id]", product.id %>
             </div>
 
-            <!-- Dynamic Options -->
+            <!-- Options selectors -->
             <% if product.has_options? %>
               <% product.options.each do |option| %>
-                <div>
-                  <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide block mb-1.5"><%= option["name"] %></span>
-                  <div class="flex gap-1.5 flex-wrap">
+                <div class="space-y-1.5">
+                  <span class="text-xs font-black uppercase tracking-wider text-gray-700 block"><%= option["name"] %></span>
+                  <div class="flex gap-2 flex-wrap">
                     <% option["values"].each do |value| %>
-                      <label class="cursor-pointer">
+                      <label class="cursor-pointer flex-1 min-w-[70px]">
                         <input type="radio" name="order[order_items][<%= idx %>][selected_options][<%= option["name"] %>]" value="<%= value %>" class="hidden peer" <%= "checked" if option["values"].first == value %>>
-                        <span class="block text-center py-1.5 px-2.5 md:px-3 rounded-lg border border-gray-200 text-xs md:text-sm font-medium text-gray-600 peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 hover:border-gray-400 cursor-pointer transition-all"><%= value %></span>
+                        <span class="block text-center py-2 px-3 border-2 border-black rounded-lg text-xs font-extrabold bg-white text-black peer-checked:bg-black peer-checked:text-white transition-all shadow-[2px_2px_0px_0px_#000000] peer-checked:shadow-none hover:translate-y-0.5 peer-checked:translate-y-0.5"><%= value %></span>
                       </label>
                     <% end %>
                   </div>
@@ -98,13 +207,13 @@
               <% end %>
             <% else %>
               <% if product.has_sizes? %>
-                <div>
-                  <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide block mb-1.5">Size</span>
-                  <div class="flex gap-1.5">
+                <div class="space-y-1.5">
+                  <span class="text-xs font-black uppercase tracking-wider text-gray-700 block">Size</span>
+                  <div class="flex gap-2">
                     <% Product::SIZES.each do |size| %>
                       <label class="flex-1 cursor-pointer">
                         <input type="radio" name="order[order_items][<%= idx %>][size]" value="<%= size %>" class="hidden peer">
-                        <span class="block text-center py-1.5 rounded-lg border border-gray-200 text-xs md:text-sm font-medium text-gray-600 peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 hover:border-gray-400 cursor-pointer transition-all"><%= size %></span>
+                        <span class="block text-center py-2 px-3 border-2 border-black rounded-lg text-xs font-extrabold bg-white text-black peer-checked:bg-black peer-checked:text-white transition-all shadow-[2px_2px_0px_0px_#000000] peer-checked:shadow-none hover:translate-y-0.5 peer-checked:translate-y-0.5"><%= size %></span>
                       </label>
                     <% end %>
                   </div>
@@ -112,18 +221,19 @@
               <% end %>
             <% end %>
 
+            <!-- Custom print name -->
             <% if product.has_custom_name? %>
-              <div>
-                <span class="text-[11px] md:text-xs text-gray-500 font-semibold uppercase tracking-wide block mb-1">
-                  Custom Name
+              <div class="space-y-1.5">
+                <label class="text-xs font-black uppercase tracking-wider text-gray-700 flex justify-between">
+                  <span>Custom Printed Name</span>
                   <% if product.custom_name_fee.to_i > 0 %>
-                    <span class="text-emerald-600 font-normal normal-case">(+<%= naira(product.custom_name_fee) %>)</span>
+                    <span class="text-accent-3 font-extrabold font-sans">(+<%= naira(product.custom_name_fee) %>)</span>
                   <% end %>
-                </span>
+                </label>
                 <%= text_field_tag "order[order_items][#{idx}][custom_name]", nil,
-                  placeholder: "Enter name to print",
+                  placeholder: "e.g. AHMAD",
                   maxlength: 30,
-                  class: "w-full rounded-lg border-gray-400 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm" %>
+                  class: "neo-input text-xs" %>
               </div>
             <% end %>
           </div>
@@ -133,158 +243,196 @@
   </section>
 
   <!-- Spacer for sticky bar -->
-  <div class="h-20 md:h-24"></div>
+  <div class="h-28 md:h-32"></div>
 
-  <!-- Sticky Bottom Bar -->
-  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] z-40">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-2.5 md:py-3 flex items-center justify-between gap-3">
-      <div class="min-w-0 flex-1">
-        <span class="text-[11px] md:text-xs text-gray-400 uppercase tracking-wide font-medium">Total</span>
-        <div class="flex items-baseline gap-2 flex-wrap">
-          <span id="live-total" class="text-lg md:text-xl font-bold text-gray-900">₦0</span>
-          <span id="live-count" class="text-xs md:text-sm text-gray-400">(0 items)</span>
+  <!-- Floating Sticky Bottom Bar -->
+  <div id="sticky-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 max-w-xl w-[90%] bg-white border-3 border-black rounded-[30px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] z-40 transition-all">
+    <div class="px-6 py-4 flex items-center justify-between gap-4">
+      <div>
+        <span class="text-[10px] text-gray-500 uppercase tracking-widest font-black block">Total Amount</span>
+        <div class="flex items-baseline gap-2">
+          <span id="live-total" class="text-xl md:text-2xl font-black text-black">₦0</span>
+          <span id="live-count" class="text-xs text-gray-400 font-bold">(0 items)</span>
         </div>
       </div>
-      <button type="button" id="continue-btn"
-        class="shrink-0 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 md:py-3 px-5 md:px-6 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-40 disabled:cursor-not-allowed text-sm md:text-base cursor-pointer"
-        disabled>
-        Continue
+      <button type="button" id="continue-btn" class="neo-btn-black py-2.5 px-6 text-xs md:text-sm shrink-0" disabled>
+        Continue ✦
       </button>
     </div>
   </div>
 
-  <!-- Checkout (hidden by default) -->
-  <div id="checkout-wrap" class="hidden">
-    <section id="checkout" class="bg-white rounded-2xl border border-gray-200 overflow-hidden mb-12 scroll-mt-24">
-      <div class="px-5 md:px-8 py-4 md:py-5 border-b border-gray-100 bg-gradient-to-r from-emerald-50/50 to-white flex items-center gap-3">
-        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-600 text-white text-sm font-bold shrink-0">2</span>
-        <div class="min-w-0">
-          <h2 class="text-lg md:text-xl font-bold text-gray-900">Delivery Details</h2>
-          <p class="text-gray-500 text-xs md:text-sm">Where should we deliver your order?</p>
+  <!-- Checkout / Delivery details -->
+  <div id="checkout-wrap" class="hidden max-w-3xl mx-auto my-12 scroll-mt-24">
+    <!-- Checkout styled as a Ticket Receipt -->
+    <section id="checkout" class="bg-primary-bg border-3 border-black rounded-card overflow-hidden shadow-[8px_8px_0px_0px_#000000] grain-bg relative">
+      
+      <!-- Top Ticket Header -->
+      <div class="bg-black text-white px-6 py-6 border-b-3 border-black flex justify-between items-center relative">
+        <div class="absolute -bottom-2.5 left-0 right-0 flex justify-around">
+          <% 12.times do %>
+            <div class="w-5 h-5 bg-primary-bg border-t-3 border-black rotate-45 transform"></div>
+          <% end %>
+        </div>
+        <div>
+          <span class="text-xs font-black uppercase tracking-wider text-accent-1">STEP 02</span>
+          <h2 class="font-display font-black text-2xl md:text-3xl text-white mt-1">Delivery Details</h2>
+        </div>
+        <div class="text-right">
+          <!-- representation of barcode -->
+          <div class="h-8 flex gap-0.5 items-end justify-end">
+            <% [1, 3, 1, 2, 4, 1, 3, 2, 1, 4, 2, 1].each do |w| %>
+              <div class="bg-white h-full" style="width: <%= w %>px"></div>
+            <% end %>
+          </div>
+          <span class="text-[8px] font-mono text-gray-400 tracking-wider">DW-2026-DROP</span>
         </div>
       </div>
 
-      <div class="px-5 md:px-8 py-5 md:py-6 space-y-5 md:space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+      <!-- Ticket Body Form fields -->
+      <div class="px-6 py-10 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <%= form.label :student_name, "Full Name", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.label :student_name, "Full Name", class: "block text-xs font-black uppercase tracking-wider mb-2" %>
             <%= form.text_field :student_name, required: true, placeholder: "e.g. Ahmad Musa",
-              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+              class: "neo-input text-sm" %>
           </div>
           <div>
-            <%= form.label :email, "Email Address", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.label :email, "Email Address", class: "block text-xs font-black uppercase tracking-wider mb-2" %>
             <%= form.email_field :email, required: true, placeholder: "e.g. student@futminna.edu.ng",
-              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+              class: "neo-input text-sm" %>
           </div>
           <div>
-            <%= form.label :department, "Department", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
-            <%= form.text_field :department, required: true, placeholder: "e.g. Computer Engineering",
-              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+            <%= form.label :department, "Department", class: "block text-xs font-black uppercase tracking-wider mb-2" %>
+            <%= form.text_field :department, required: true, placeholder: "e.g. Computer Science",
+              class: "neo-input text-sm" %>
           </div>
           <div>
-            <%= form.label :level, "Level", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.label :level, "Level", class: "block text-xs font-black uppercase tracking-wider mb-2" %>
             <%= form.select :level, ["100L", "200L", "300L", "400L", "500L"], { prompt: "Select level" }, required: true,
-              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm text-sm ring-1 ring-gray-300" %>
+              class: "neo-input text-sm cursor-pointer" %>
           </div>
           <div class="md:col-span-2">
-            <%= form.label :phone, "Phone Number", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+            <%= form.label :phone, "Phone Number", class: "block text-xs font-black uppercase tracking-wider mb-2" %>
             <%= form.telephone_field :phone, required: true, placeholder: "e.g. 08031234567",
-              class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm text-sm" %>
+              class: "neo-input text-sm" %>
           </div>
         </div>
 
         <div>
-          <%= form.label :delivery_location, "Delivery Location", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
-          <%= form.select :delivery_location, [["Hostel (On-campus)", "hostel"], ["Off Campus (GK)", "off_campus"]], { prompt: "Select delivery location" }, required: true,
-            class: "w-full rounded-lg border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm text-sm ring-1 ring-gray-300" %>
+          <%= form.label :delivery_location, "Delivery Location", class: "block text-xs font-black uppercase tracking-wider mb-2" %>
+          <%= form.select :delivery_location, [["Hostel (On-campus)", "hostel"], ["Off Campus (Gidan Kwano pickup)", "off_campus"]], { prompt: "Select delivery location" }, required: true,
+            class: "neo-input text-sm cursor-pointer" %>
         </div>
       </div>
 
-      <div class="px-5 md:px-8 py-4 md:py-5 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
-        <div class="text-xs md:text-sm text-gray-400 flex items-center gap-1">
-          <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      <!-- Ticket footer -->
+      <div class="px-6 py-6 bg-white border-t-3 border-black flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 flex items-center gap-2">
+          <svg class="w-4 h-4 text-black shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           Secured by Paystack
         </div>
-        <%= form.submit "Proceed to Payment →",
-          class: "bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 md:py-3 px-5 md:px-8 rounded-xl transition-all duration-200 hover:shadow-lg cursor-pointer text-sm md:text-base" %>
+        <%= form.submit "Proceed to Payment ✦",
+          class: "neo-btn-black w-full sm:w-auto" %>
       </div>
     </section>
   </div>
   <% end %>
 <% else %>
-  <div class="text-center py-16 md:py-20">
-    <div class="text-5xl md:text-6xl mb-6 opacity-30">🏗️</div>
-    <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Collection Coming Soon</h2>
-    <p class="text-gray-500 text-sm md:text-base max-w-md mx-auto">The Dawah Week merchandise collection is being prepared. Check back soon to place your order.</p>
+  <!-- Coming soon template -->
+  <div class="text-center py-20 bg-primary-bg rounded-card border-3 border-black shadow-[8px_8px_0px_0px_#000000] grain-bg max-w-2xl mx-auto my-12">
+    <div class="text-6xl animate-float mb-6">🚧</div>
+    <h2 class="font-display font-black text-3xl text-black">Collection Coming Soon</h2>
+    <p class="text-gray-700 text-sm max-w-sm mx-auto mt-4 leading-relaxed">The Dawah Week merchandise collection is currently being curated. Drop details and pre-orders will launch soon.</p>
   </div>
 <% end %>
+
+<!-- FAQ Accordion section -->
+<div id="faq" class="my-20 scroll-mt-24">
+  <div class="text-center mb-12">
+    <span class="text-xs font-black uppercase tracking-wider text-accent-3">HAVE QUESTIONS?</span>
+    <h2 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">FAQs ✦</h2>
+  </div>
+  <div class="max-w-3xl mx-auto space-y-6">
+    <details class="group neo-card p-6 bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden border-3 border-black">
+      <summary class="flex justify-between items-center font-bold text-black text-base md:text-lg">
+        <span class="font-display font-black uppercase tracking-tight">When will the pre-order close?</span>
+        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">✦</span>
+      </summary>
+      <p class="mt-4 text-sm text-gray-700 font-medium leading-relaxed border-t-2 border-black/5 pt-4">
+        The pre-order runs until the end of the Dawah Week. We only manufacture what is ordered during this window to ensure zero waste.
+      </p>
+    </details>
+    <details class="group neo-card p-6 bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden border-3 border-black">
+      <summary class="flex justify-between items-center font-bold text-black text-base md:text-lg">
+        <span class="font-display font-black uppercase tracking-tight">How do I collect my order?</span>
+        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">✦</span>
+      </summary>
+      <p class="mt-4 text-sm text-gray-700 font-medium leading-relaxed border-t-2 border-black/5 pt-4">
+        Once production is finished (approx. 2 weeks post-order), you'll receive an email/phone notification. You can collect your gear at the designated MSSN points in Bosso or GK campus, or have it delivered to your hostel.
+      </p>
+    </details>
+    <details class="group neo-card p-6 bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden border-3 border-black">
+      <summary class="flex justify-between items-center font-bold text-black text-base md:text-lg">
+        <span class="font-display font-black uppercase tracking-tight">Can I customize the name on my gear?</span>
+        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">✦</span>
+      </summary>
+      <p class="mt-4 text-sm text-gray-700 font-medium leading-relaxed border-t-2 border-black/5 pt-4">
+        Yes! For custom-enabled products, there is a field to enter your preferred print name for a small extra fee. All custom names are proofread by our team.
+      </p>
+    </details>
+  </div>
+</div>
 
 <script>
 (function() {
   // --- Slider ---
-  document.querySelectorAll('.slider').forEach(slider => {
-    const imgs = slider.querySelectorAll('.slide-img');
-    const dots = slider.querySelectorAll('.slider-dot');
-    if (imgs.length <= 1) return;
-
-    function show(idx) {
+  document.querySelectorAll('.slider-dot').forEach(dot => {
+    dot.addEventListener('click', function(e) {
+      e.preventDefault();
+      const sliderIndex = this.closest('.product-card').dataset.index;
+      const slideIndex = parseInt(this.dataset.slide);
+      const card = this.closest('.product-card');
+      const imgs = card.querySelectorAll('.slide-img');
+      const dots = card.querySelectorAll('.slider-dot');
+      
       imgs.forEach((img, i) => {
-        img.style.display = i === idx ? '' : 'none';
+        if (i === slideIndex) {
+          img.style.display = '';
+          setTimeout(() => img.style.opacity = '1', 50);
+        } else {
+          img.style.opacity = '0';
+          img.style.display = 'none';
+        }
       });
+
       dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-white', i === idx);
-        dot.classList.toggle('scale-110', i === idx);
-        dot.classList.toggle('bg-white/50', i !== idx);
-        dot.classList.toggle('hover:bg-white/70', i !== idx);
-      });
-    }
-
-    let current = 0;
-    let interval = setInterval(function() {
-      current = (current + 1) % imgs.length;
-      show(current);
-    }, 3000);
-
-    function resetTimer() {
-      clearInterval(interval);
-      interval = setInterval(function() {
-        current = (current + 1) % imgs.length;
-        show(current);
-      }, 3000);
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', function(e) {
-        e.preventDefault();
-        current = i;
-        show(current);
-        resetTimer();
+        dot.classList.toggle('bg-accent-1', i === slideIndex);
+        dot.classList.toggle('scale-125', i === slideIndex);
+        dot.classList.toggle('bg-white/60', i !== slideIndex);
       });
     });
-
-
   });
 
   // --- Live total + selection indicators ---
   function updateTotal() {
     let total = 0;
     let count = 0;
-    document.querySelectorAll('.selected-card').forEach(card => {
+    document.querySelectorAll('.product-card').forEach(card => {
       const qtyInput = card.querySelector('.qty-input');
       const qty = parseInt(qtyInput.value) || 0;
       const badge = card.querySelector('.selected-badge');
       if (qty > 0) {
         count += qty;
-        card.classList.add('ring-2', 'ring-emerald-400', 'border-emerald-400', 'shadow-md');
-        badge.style.display = '';
+        card.classList.add('border-accent-2', 'shadow-[8px_8px_0px_0px_#FFD700]', '-translate-y-1');
+        if (badge) badge.style.display = 'flex';
       } else {
-        card.classList.remove('ring-2', 'ring-emerald-400', 'border-emerald-400', 'shadow-md');
-        badge.style.display = 'none';
+        card.classList.remove('border-accent-2', 'shadow-[8px_8px_0px_0px_#FFD700]', '-translate-y-1');
+        if (badge) badge.style.display = 'none';
       }
       if (qty <= 0) return;
       const basePrice = parseInt(card.dataset.basePrice) || 0;
       const customFee = parseInt(card.dataset.customNameFee) || 0;
-      const nameInput = card.querySelector('input[placeholder*="Enter name"]');
+      const nameInput = card.querySelector('input[placeholder*="AHMAD"]');
       const hasName = nameInput && nameInput.value.trim().length > 0;
       total += (basePrice + (hasName ? customFee : 0)) * qty;
     });
@@ -313,7 +461,7 @@
     el.addEventListener('change', updateTotal);
     el.addEventListener('input', updateTotal);
   });
-  document.querySelectorAll('input[placeholder*="Enter name"]').forEach(el => {
+  document.querySelectorAll('input[placeholder*="AHMAD"]').forEach(el => {
     el.addEventListener('input', updateTotal);
   });
   updateTotal();
@@ -325,7 +473,7 @@
       var wrap = document.getElementById('checkout-wrap');
       if (!wrap) return;
       wrap.classList.remove('hidden');
-      this.textContent = '↑ Back';
+      this.innerHTML = 'Back ↑';
       this.onclick = function() {
         document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
       };

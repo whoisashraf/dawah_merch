@@ -13,40 +13,58 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-50 min-h-screen text-gray-900">
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <body class="bg-white min-h-screen text-black antialiased selection:bg-accent-1 selection:text-black">
+    <!-- Navbar -->
+    <nav class="bg-white border-b-3 border-black sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-          <%= link_to new_order_path, class: "flex items-center gap-3 hover:opacity-80 transition-opacity" do %>
-            <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-700 to-emerald-600 flex items-center justify-center text-white text-xs font-black tracking-wider">DW</span>
-            <div>
-              <span class="font-bold text-gray-900 block leading-tight text-sm">DOXACLASM WARFARE</span>
-              <span class="text-[11px] text-gray-400 block leading-tight tracking-wide">FUTMINNA MSSN · Dawah Week</span>
-            </div>
-          <% end %>
+        <div class="flex justify-between h-20 items-center">
+          <div class="flex items-center gap-8">
+            <%= link_to new_order_path, class: "flex items-center gap-3 hover:opacity-90 transition-opacity" do %>
+              <div class="relative w-10 h-10 shrink-0">
+                <div class="absolute inset-0 bg-black rounded-lg border-2 border-black rotate-6"></div>
+                <div class="absolute -inset-0.5 bg-accent-1 rounded-full border-2 border-black -translate-x-1.5 translate-y-1 rotate-12 flex items-center justify-center text-xs font-black text-black">DW</div>
+              </div>
+              <div>
+                <span class="font-display font-black text-black block leading-none text-base tracking-tight">DOXACLASM</span>
+                <span class="text-[10px] text-gray-600 block leading-tight font-extrabold uppercase tracking-widest mt-0.5">WARFARE · DAWAH WEEK</span>
+              </div>
+            <% end %>
 
-          <div class="flex items-center gap-5">
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-6 border-l-2 border-black/10 pl-6">
+              <a href="#products" class="text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase">Collection</a>
+              <a href="#manifesto" class="text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase">The Concept</a>
+              <a href="#faq" class="text-xs text-black font-extrabold tracking-widest hover:text-accent-2 transition-colors uppercase">FAQs</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
             <% if authenticated? %>
-              <%= link_to "Admin", admin_path, class: "text-sm text-gray-500 hover:text-gray-800 font-medium transition-colors" %>
-              <%= button_to "Log out", session_path, method: :delete, class: "text-sm text-gray-400 hover:text-red-500 font-medium transition-colors bg-transparent border-none cursor-pointer" %>
+              <%= link_to "ADMIN PORTAL", admin_path, class: "text-xs text-accent-3 font-extrabold tracking-widest hover:underline" %>
+              <%= button_to "LOG OUT", session_path, method: :delete, class: "text-xs text-accent-2 font-extrabold tracking-widest bg-transparent border-none cursor-pointer hover:underline" %>
+            <% else %>
+              <a href="#products" class="border-2 border-black px-5 py-2.5 rounded-[20px] font-extrabold text-xs uppercase hover:bg-black hover:text-white transition-all text-black cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5">
+                GRAB GEAR →
+              </a>
             <% end %>
           </div>
         </div>
       </div>
     </nav>
 
+
     <% if flash[:notice] %>
-      <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8 flash-notice">
-        <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm rounded-xl px-4 py-3 flex items-center gap-2">
-          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+      <div class="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8 flash-notice relative z-30">
+        <div class="bg-accent-1 border-3 border-black text-black font-extrabold text-sm rounded-card px-5 py-4 flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <svg class="w-5 h-5 shrink-0 stroke-current fill-none stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <%= flash[:notice] %>
         </div>
       </div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8 flash-alert">
-        <div class="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl px-4 py-3 flex items-center gap-2">
-          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+      <div class="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8 flash-alert relative z-30">
+        <div class="bg-accent-2 border-3 border-black text-white font-extrabold text-sm rounded-card px-5 py-4 flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <svg class="w-5 h-5 shrink-0 stroke-current fill-none stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
           <%= flash[:alert] %>
         </div>
       </div>
@@ -59,16 +77,37 @@
     <script>
       setTimeout(() => {
         document.querySelectorAll('.flash-notice, .flash-alert').forEach(el => {
-          el.style.transition = 'opacity 0.5s';
+          el.style.transition = 'all 0.5s ease-in-out';
           el.style.opacity = '0';
+          el.style.transform = 'translateY(-10px)';
           setTimeout(() => el.remove(), 500);
         });
-      }, 3000);
+      }, 4000);
     </script>
 
-    <footer class="border-t border-gray-100 mt-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
-        <p class="text-xs text-gray-400">FUTMINNA Muslim Students' Society — Doxaclasm Warfare · Dawah Week 2026</p>
+    <!-- Dark Mode Section Footer -->
+    <footer class="bg-dark-bg text-white border-t-3 border-black mt-20 relative overflow-hidden grain-bg py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="sticker-badge sticker-badge-yellow mb-4">BUILT FOR THE COMMUNITY</span>
+            <h2 class="font-display font-black text-4xl md:text-5xl tracking-tight leading-tight text-white mb-6">
+              DOXACLASM WARFARE ✦
+            </h2>
+            <p class="text-gray-400 text-sm md:text-base max-w-md leading-relaxed">
+              Every design is conceptualized by students, for students. Representing the eternal struggle of truth over falsehood. All profits support Dawah Week projects.
+            </p>
+          </div>
+          <div class="flex flex-col md:items-end justify-center gap-6">
+            <div class="flex gap-4">
+              <a href="#products" class="neo-btn-yellow">Grab Your Merch ✦</a>
+            </div>
+            <div class="text-left md:text-right text-xs text-gray-500 mt-4">
+              <p class="font-bold">FUTMINNA Muslim Students' Society (MSSN)</p>
+              <p class="mt-1">© 2026 Doxaclasm Warfare. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   </body>

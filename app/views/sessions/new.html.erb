@@ -1,38 +1,46 @@
-<div class="min-h-[70vh] flex items-center justify-center">
+<div class="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="w-full max-w-md">
-    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      <div class="px-8 pt-8 pb-6 text-center border-b border-gray-100">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-700 to-emerald-600 flex items-center justify-center text-white text-sm font-black tracking-wider mx-auto mb-4">DW</div>
-        <h1 class="text-xl font-bold text-gray-900">Admin Access</h1>
-        <p class="text-gray-500 text-sm mt-1">Doxaclasm Warfare · Dawah Week 2026</p>
+    <div class="neo-card bg-white overflow-hidden shadow-[8px_8px_0px_0px_#000000]">
+      <div class="px-8 pt-8 pb-6 text-center border-b-3 border-black bg-primary-bg/10 relative grain-bg">
+        <div class="absolute top-3 right-3 text-xl font-black sparkle-icon animate-float">✦</div>
+        <div class="w-12 h-12 rounded-xl border-3 border-black bg-accent-1 flex items-center justify-center text-black text-sm font-black tracking-wider mx-auto mb-4 rotate-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+          DW
+        </div>
+        <h1 class="font-display font-black text-2xl text-black">ADMIN ACCESS</h1>
+        <p class="text-xs font-bold text-gray-500 mt-1 uppercase tracking-wider">Doxaclasm Warfare · Dawah Week 2026</p>
       </div>
 
-      <%= form_with url: session_url, class: "px-8 py-6 space-y-5" do |form| %>
+      <%= form_with url: session_url, class: "px-8 py-8 space-y-6" do |form| %>
         <% if alert = flash[:alert] %>
-          <div class="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl px-4 py-3 flex items-center gap-2">
-            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+          <div class="bg-accent-2 border-3 border-black text-white font-extrabold text-sm rounded-card px-5 py-4 flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <svg class="w-5 h-5 shrink-0 stroke-current fill-none stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             <%= alert %>
           </div>
         <% end %>
 
         <div>
-          <%= form.label :email_address, "Email", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+          <%= form.label :email_address, "Email Address", class: "block text-xs font-black uppercase tracking-wider mb-2 text-black" %>
           <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username",
             placeholder: "admin@mssn.com",
             value: params[:email_address],
-            class: "w-full rounded-xl border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm" %>
+            class: "neo-input text-sm placeholder:text-gray-400" %>
         </div>
 
         <div>
-          <%= form.label :password, "Password", class: "block text-sm font-medium text-gray-700 mb-1.5" %>
+          <div class="flex justify-between items-center mb-2">
+            <%= form.label :password, "Password", class: "block text-xs font-black uppercase tracking-wider text-black" %>
+            <%= link_to "Forgot?", new_password_path, class: "text-xs font-bold text-accent-3 hover:underline" %>
+          </div>
           <%= form.password_field :password, required: true, autocomplete: "current-password",
-            placeholder: "Enter your password",
+            placeholder: "••••••••",
             maxlength: 72,
-            class: "w-full rounded-xl border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-gray-400 shadow-sm" %>
+            class: "neo-input text-sm placeholder:text-gray-400" %>
         </div>
 
-        <%= form.submit "Sign in",
-          class: "w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 rounded-xl transition-colors cursor-pointer" %>
+        <div>
+          <%= form.submit "SIGN IN ✦",
+            class: "w-full neo-btn-black cursor-pointer" %>
+        </div>
       <% end %>
     </div>
   </div>

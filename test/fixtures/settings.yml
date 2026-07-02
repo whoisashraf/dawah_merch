@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  key: MyString
-  value: MyText
+  key: whatsapp_group_link
+  value: https://chat.whatsapp.com/test-group-link
 
 two:
-  key: MyString
-  value: MyText
+  key: admin_notification_email
+  value: notify@mssn.com

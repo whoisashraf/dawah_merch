@@ -1,61 +1,70 @@
-<div class="mb-6">
-  <h1 class="text-2xl font-bold text-gray-900">Pickup</h1>
-  <p class="text-gray-500 text-sm mt-1">Search and mark orders as collected</p>
+<div class="mb-8">
+  <span class="sticker-badge sticker-badge-yellow mb-2">PICKUP LOGISTICS</span>
+  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Pickup Tracker ✦</h1>
+  <p class="text-xs font-bold text-gray-500 mt-1">Search student name or reference to verify payment and mark as collected.</p>
 </div>
 
-<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
-  <%= form_with url: admin_pickup_path, method: :get, class: "flex gap-3" do |f| %>
-    <%= text_field_tag :q, params[:q], placeholder: "Search by reference, name, or phone...",
-      class: "flex-1 rounded-xl border-gray-400 bg-white px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 shadow-sm" %>
-    <%= submit_tag "Search", class: "bg-gray-900 hover:bg-gray-800 text-white font-medium py-2.5 px-5 rounded-xl transition-colors cursor-pointer" %>
+<!-- Search Form -->
+<div class="neo-card bg-white p-6 mb-8">
+  <%= form_with url: admin_pickup_path, method: :get, class: "flex flex-col sm:flex-row gap-3" do |f| %>
+    <%= text_field_tag :q, params[:q], placeholder: "Search by reference, student name, or phone...",
+      class: "flex-1 neo-input text-sm" %>
+    <%= submit_tag "Search ✦", class: "neo-btn-black py-2.5 px-6 text-xs cursor-pointer" %>
   <% end %>
 </div>
 
-<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-  <table class="w-full text-sm">
-    <thead class="bg-gray-50 border-b border-gray-200">
-      <tr>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Reference</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Student</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Phone</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Delivery</th>
-        <th class="text-right py-3 px-4 text-gray-600 font-semibold">Items</th>
-        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Status</th>
-        <th class="text-right py-3 px-4 text-gray-600 font-semibold">Actions</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-100">
-      <% @orders.each do |order| %>
-        <tr class="hover:bg-gray-50">
-          <td class="py-3 px-4 font-mono text-xs text-gray-700"><%= order.reference %></td>
-          <td class="py-3 px-4 text-gray-900 font-medium"><%= order.student_name %></td>
-          <td class="py-3 px-4 text-gray-500"><%= order.phone %></td>
-          <td class="py-3 px-4 text-gray-500 text-xs"><%= order.delivery_label %></td>
-          <td class="py-3 px-4 text-right text-gray-700"><%= order.order_items.sum(:quantity) %></td>
-          <td class="py-3 px-4 text-center">
-            <span class="<%= order.status == 'collected' ? 'text-emerald-600 bg-emerald-50' : 'text-amber-600 bg-amber-50' %> text-xs font-medium px-2.5 py-1 rounded-lg"><%= order.status.humanize %></span>
-          </td>
-          <td class="py-3 px-4 text-right">
-            <div class="flex justify-end gap-2">
-              <% if order.status != "collected" %>
-                <%= button_to "Mark Collected", admin_pickup_collect_path(order), method: :patch,
-                  class: "bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors" %>
-              <% end %>
-              <a href="<%= order.whatsapp_url %>" target="_blank" rel="noopener"
-                class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors">
-                WhatsApp
-              </a>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-      <% if @orders.empty? %>
+<!-- Pickup Table -->
+<div class="neo-card bg-white overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse text-left">
+      <thead class="bg-white border-b-3 border-black font-black uppercase tracking-wider text-xs">
         <tr>
-          <td colspan="7" class="py-12 text-center text-gray-400">
-            <%= params[:q].present? ? "No orders match your search" : "No pending orders for pickup" %>
-          </td>
+          <th class="py-4 px-6 border-r-2 border-black/10">Reference</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Student</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Phone</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Delivery</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-center">Items</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-center">Status</th>
+          <th class="py-4 px-6"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="divide-y-2 divide-black/10 font-semibold">
+        <% @orders.each do |order| %>
+          <tr class="hover:bg-primary-bg/10 transition-colors">
+            <td class="py-3.5 px-6 font-mono text-xs text-accent-3 font-bold border-r-2 border-black/10"><%= order.reference %></td>
+            <td class="py-3.5 px-6 text-black font-bold border-r-2 border-black/10"><%= order.student_name %></td>
+            <td class="py-3.5 px-6 text-gray-600 border-r-2 border-black/10"><%= order.phone %></td>
+            <td class="py-3.5 px-6 text-gray-500 text-xs border-r-2 border-black/10"><%= order.delivery_label %></td>
+            <td class="py-3.5 px-6 text-center border-r-2 border-black/10 font-bold"><%= order.order_items.sum(:quantity) %></td>
+            <td class="py-3.5 px-6 text-center border-r-2 border-black/10">
+              <% if order.status == 'collected' %>
+                <span class="border-2 border-black bg-accent-3 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-[1px_1px_0px_0px_#000000]">Collected</span>
+              <% else %>
+                <span class="border-2 border-black bg-accent-1 text-black text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-[1px_1px_0px_0px_#000000]"><%= order.status.humanize %></span>
+              <% end %>
+            </td>
+            <td class="py-3.5 px-6 text-right">
+              <div class="flex justify-end gap-2">
+                <% if order.status != "collected" %>
+                  <%= button_to "Mark Collected ✦", admin_pickup_collect_path(order), method: :patch,
+                    class: "border-2 border-black bg-white text-black hover:bg-black hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
+                <% end %>
+                <a href="<%= order.whatsapp_url %>" target="_blank" rel="noopener"
+                  class="border-2 border-black bg-accent-1 text-black hover:bg-black hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5">
+                  WhatsApp
+                </a>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <% if @orders.empty? %>
+          <tr>
+            <td colspan="7" class="py-16 text-center text-gray-500 font-bold">
+              <%= params[:q].present? ? "No orders matched your search query." : "No pending collections right now." %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

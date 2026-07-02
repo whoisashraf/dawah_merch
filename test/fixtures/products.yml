@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  slug: MyString
-  base_price: 1
-  has_sizes: false
-  has_custom_name: false
-  custom_name_fee: 1
-  active: false
+  name: Hoodie
+  slug: hoodie
+  base_price: 600000
+  has_sizes: true
+  has_custom_name: true
+  custom_name_fee: 100000
+  active: true
 
 two:
-  name: MyString
-  slug: MyString
-  base_price: 1
+  name: Cap
+  slug: cap
+  base_price: 350000
   has_sizes: false
   has_custom_name: false
-  custom_name_fee: 1
-  active: false
+  custom_name_fee: 0
+  active: true

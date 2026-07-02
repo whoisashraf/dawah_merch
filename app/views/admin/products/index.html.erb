@@ -1,51 +1,75 @@
-<div class="flex justify-between items-center mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
   <div>
-    <h1 class="text-2xl font-bold text-gray-900">Products</h1>
-    <p class="text-gray-500 text-sm mt-1">Manage your merchandise catalog</p>
+    <span class="sticker-badge sticker-badge-yellow mb-2">CATALOG MANAGER</span>
+    <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Products ✦</h1>
+    <p class="text-xs font-bold text-gray-500 mt-1">Manage drop status, options, custom name charges and image sets.</p>
   </div>
-  <%= link_to "New Product", new_admin_product_path, class: "bg-gray-900 hover:bg-gray-800 text-white font-medium py-2.5 px-5 rounded-xl text-sm transition-colors" %>
+  <%= link_to "New Product ✦", new_admin_product_path, class: "neo-btn-black text-xs py-2 px-5" %>
 </div>
 
-<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-  <table class="w-full text-sm">
-    <thead class="bg-gray-50 border-b border-gray-200">
-      <tr>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Image</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Name</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Slug</th>
-        <th class="text-right py-3 px-4 text-gray-600 font-semibold">Price</th>
-        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Options</th>
-        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Custom Name</th>
-        <th class="text-center py-3 px-4 text-gray-600 font-semibold">Active</th>
-        <th class="text-right py-3 px-4 text-gray-600 font-semibold"></th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-100">
-      <% @products.each do |product| %>
-        <tr class="hover:bg-gray-50">
-          <td class="py-3 px-4">
-            <% if product.images.attached? && product.images.any? %>
-              <%= image_tag product.images.first, class: "w-10 h-10 rounded-lg object-cover" %>
-            <% else %>
-              <span class="text-2xl"><%= product_icon(product) %></span>
-            <% end %>
-          </td>
-          <td class="py-3 px-4 text-gray-900 font-medium"><%= product.name %></td>
-          <td class="py-3 px-4 text-gray-400 font-mono text-xs"><%= product.slug %></td>
-          <td class="py-3 px-4 text-right text-gray-900 font-medium"><%= naira(product.base_price) %></td>
-          <td class="py-3 px-4 text-center text-xs"><%= product.has_options? ? product.options.map { |o| o["name"] }.join(", ") : "—" %></td>
-          <td class="py-3 px-4 text-center"><%= product.has_custom_name? ? "✅" : "—" %></td>
-          <td class="py-3 px-4 text-center"><%= product.active? ? "✅" : "❌" %></td>
-          <td class="py-3 px-4 text-right">
-            <%= link_to "Edit", edit_admin_product_path(product), class: "text-emerald-600 hover:text-emerald-700 text-sm font-medium" %>
-          </td>
-        </tr>
-      <% end %>
-      <% if @products.empty? %>
+<!-- Products Table Card -->
+<div class="neo-card bg-white overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse text-left">
+      <thead class="bg-white border-b-3 border-black font-black uppercase tracking-wider text-xs">
         <tr>
-          <td colspan="8" class="py-12 text-center text-gray-400">No products yet — <%= link_to "add one", new_admin_product_path, class: "text-emerald-600 hover:text-emerald-700 font-medium" %></td>
+          <th class="py-4 px-6 border-r-2 border-black/10">Image</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Name</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Slug</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-right">Base Price</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-center">Option Types</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-center">Custom Name</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-center">Active</th>
+          <th class="py-4 px-6"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="divide-y-2 divide-black/10 font-semibold">
+        <% @products.each do |product| %>
+          <tr class="hover:bg-primary-bg/10 transition-colors">
+            <td class="py-3 px-6 border-r-2 border-black/10">
+              <% if product.images.attached? && product.images.any? %>
+                <div class="relative w-12 h-12 overflow-hidden border-2 border-black rounded-lg bg-primary-bg flex items-center justify-center">
+                  <%= image_tag product.images.first, class: "w-full h-full object-cover" %>
+                </div>
+              <% else %>
+                <div class="w-12 h-12 border-2 border-black rounded-lg bg-primary-bg flex items-center justify-center text-2xl">
+                  <%= product_icon(product) %>
+                </div>
+              <% end %>
+            </td>
+            <td class="py-3 px-6 text-black font-black text-base border-r-2 border-black/10"><%= product.name %></td>
+            <td class="py-3 px-6 text-gray-500 font-mono text-xs border-r-2 border-black/10"><%= product.slug %></td>
+            <td class="py-3 px-6 text-right text-black font-black text-base border-r-2 border-black/10"><%= naira(product.base_price) %></td>
+            <td class="py-3 px-6 text-center text-xs border-r-2 border-black/10">
+              <%= product.has_options? ? product.options.map { |o| o["name"] }.join(", ") : "—" %>
+            </td>
+            <td class="py-3 px-6 text-center border-r-2 border-black/10">
+              <% if product.has_custom_name? %>
+                <span class="border-2 border-black bg-accent-1 text-black text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-[1px_1px_0px_0px_#000000]">Enabled</span>
+              <% else %>
+                <span class="text-gray-400">—</span>
+              <% end %>
+            </td>
+            <td class="py-3 px-6 text-center border-r-2 border-black/10">
+              <% if product.active? %>
+                <span class="border-2 border-black bg-accent-3 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-[1px_1px_0px_0px_#000000]">Yes</span>
+              <% else %>
+                <span class="border-2 border-black bg-accent-2 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-[1px_1px_0px_0px_#000000]">No</span>
+              <% end %>
+            </td>
+            <td class="py-3 px-6 text-right">
+              <%= link_to "Edit ✦", edit_admin_product_path(product), class: "text-accent-3 hover:text-black font-bold transition-colors" %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @products.empty? %>
+          <tr>
+            <td colspan="8" class="py-16 text-center text-gray-500 font-bold">
+              No products drop created yet. <%= link_to "Add one now →", new_admin_product_path, class: "text-accent-3 underline" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,21 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reference: MyString
-  student_name: MyString
-  matric: MyString
-  phone: MyString
-  email: MyString
-  total_amount: 1
-  payment_status: MyString
-  status: MyString
+  reference: DW-1719875500-1234ABCD
+  student_name: Ahmad Musa
+  phone: 08031234567
+  email: ahmad@student.futminna.edu.ng
+  department: Computer Science
+  level: 400L
+  delivery_location: hostel
+  total_amount: 380000
+  payment_status: paid
+  status: processing
 
 two:
-  reference: MyString
-  student_name: MyString
-  matric: MyString
-  phone: MyString
-  email: MyString
-  total_amount: 1
-  payment_status: MyString
-  status: MyString
+  reference: DW-1719875600-5678EFGH
+  student_name: Maryam Ibrahim
+  phone: 08057654321
+  email: maryam@student.futminna.edu.ng
+  department: Biochemistry
+  level: 300L
+  delivery_location: off_campus
+  total_amount: 550000
+  payment_status: unpaid
+  status: pending

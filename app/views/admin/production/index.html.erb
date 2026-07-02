@@ -1,38 +1,44 @@
-<div class="mb-6">
-  <h1 class="text-2xl font-bold text-gray-900">Production Summary</h1>
-  <p class="text-gray-500 text-sm mt-1">Size breakdown for paid orders</p>
+<div class="mb-8">
+  <span class="sticker-badge sticker-badge-yellow mb-2">MANUFACTURING DATA</span>
+  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Production Summary ✦</h1>
+  <p class="text-xs font-bold text-gray-500 mt-1">Aggregated sizing matrix and counts across paid pre-orders.</p>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
   <% @summary.each do |product, sizes| %>
-    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-      <h2 class="font-bold text-gray-900 text-lg mb-4"><%= product.name %></h2>
-      <% if sizes.any? %>
-        <table class="w-full text-sm">
-          <thead class="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th class="text-left py-2 px-3 text-gray-600 font-semibold">Size</th>
-              <th class="text-right py-2 px-3 text-gray-600 font-semibold">Count</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100">
-            <% sizes.each do |size, count| %>
+    <!-- Product Size Matrix Card -->
+    <div class="neo-card bg-white overflow-hidden">
+      <div class="px-6 py-4 border-b-3 border-black bg-primary-bg/20">
+        <h2 class="font-display font-black text-lg text-black"><%= product.name %></h2>
+      </div>
+      <div class="p-6">
+        <% if sizes.any? %>
+          <table class="w-full text-sm border-collapse text-left">
+            <thead class="bg-white border-b-2 border-black font-black uppercase tracking-wider text-xs">
               <tr>
-                <td class="py-2 px-3 text-gray-900 font-medium"><%= size %></td>
-                <td class="py-2 px-3 text-right text-gray-900 font-bold text-lg"><%= count %></td>
+                <th class="py-2.5 px-4 border-r-2 border-black/10">Size Option</th>
+                <th class="py-2.5 px-4 text-right">Units to Print</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p class="text-gray-400 text-sm">No paid orders with sizes yet</p>
-      <% end %>
+            </thead>
+            <tbody class="divide-y-2 divide-black/10 font-semibold">
+              <% sizes.each do |size, count| %>
+                <tr class="hover:bg-primary-bg/5">
+                  <td class="py-3 px-4 border-r-2 border-black/10 text-black font-black text-base"><%= size %></td>
+                  <td class="py-3 px-4 text-right text-accent-3 font-black text-lg"><%= count %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p class="text-gray-400 text-sm font-bold text-center py-6">No paid orders for this product drop yet.</p>
+        <% end %>
+      </div>
     </div>
   <% end %>
 
   <% if @summary.empty? %>
-    <div class="md:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-      <p class="text-gray-400 text-center">No products with sizes configured</p>
+    <div class="md:col-span-2 neo-card bg-white p-8 text-center text-gray-500 font-bold">
+      No products configured with sizing option fields are active.
     </div>
   <% end %>
 </div>

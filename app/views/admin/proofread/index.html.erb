@@ -1,43 +1,51 @@
-<div class="mb-6">
-  <h1 class="text-2xl font-bold text-gray-900">Proofread Custom Names</h1>
-  <p class="text-gray-500 text-sm mt-1">Review and approve custom names before production</p>
+<div class="mb-8">
+  <span class="sticker-badge sticker-badge-yellow mb-2">CONTENT MODERATION</span>
+  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Proofread Names ✦</h1>
+  <p class="text-xs font-bold text-gray-500 mt-1">Review, approve, or reject student names for custom garment printing.</p>
 </div>
 
-<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-  <table class="w-full text-sm">
-    <thead class="bg-gray-50 border-b border-gray-200">
-      <tr>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Order</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Student</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Product</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Size</th>
-        <th class="text-left py-3 px-4 text-gray-600 font-semibold">Custom Name</th>
-        <th class="text-right py-3 px-4 text-gray-600 font-semibold">Actions</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-100">
-      <% @order_items.each do |item| %>
-        <tr class="hover:bg-gray-50">
-          <td class="py-3 px-4 font-mono text-xs text-gray-700"><%= item.order.reference %></td>
-          <td class="py-3 px-4 text-gray-900 font-medium"><%= item.order.student_name %></td>
-          <td class="py-3 px-4 text-gray-600"><%= item.product.name %></td>
-          <td class="py-3 px-4 text-gray-500"><%= item.size || "—" %></td>
-          <td class="py-3 px-4">
-            <span class="text-gray-900 font-medium">"<%= item.custom_name %>"</span>
-          </td>
-          <td class="py-3 px-4 text-right">
-            <div class="flex justify-end gap-2">
-              <%= button_to "Approve", approve_admin_proofread_path(item), method: :patch, class: "bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors" %>
-              <%= button_to "Reject", reject_admin_proofread_path(item), method: :patch, class: "bg-red-500 hover:bg-red-600 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors" %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-      <% if @order_items.empty? %>
+<!-- Proofread Table Card -->
+<div class="neo-card bg-white overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse text-left">
+      <thead class="bg-white border-b-3 border-black font-black uppercase tracking-wider text-xs">
         <tr>
-          <td colspan="6" class="py-12 text-center text-gray-400">No pending proofread requests</td>
+          <th class="py-4 px-6 border-r-2 border-black/10">Reference</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Student</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Product</th>
+          <th class="py-4 px-6 border-r-2 border-black/10 text-center">Size</th>
+          <th class="py-4 px-6 border-r-2 border-black/10">Custom Name</th>
+          <th class="py-4 px-6"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="divide-y-2 divide-black/10 font-semibold">
+        <% @order_items.each do |item| %>
+          <tr class="hover:bg-primary-bg/10 transition-colors">
+            <td class="py-3.5 px-6 font-mono text-xs text-accent-3 font-bold border-r-2 border-black/10"><%= item.order.reference %></td>
+            <td class="py-3.5 px-6 text-black font-bold border-r-2 border-black/10"><%= item.order.student_name %></td>
+            <td class="py-3.5 px-6 text-gray-600 border-r-2 border-black/10"><%= item.product.name %></td>
+            <td class="py-3.5 px-6 text-center text-gray-500 border-r-2 border-black/10"><%= item.size || "—" %></td>
+            <td class="py-3.5 px-6 border-r-2 border-black/10">
+              <span class="bg-accent-1 px-2 py-1 rounded border-2 border-black font-mono text-sm text-black font-black">"<%= item.custom_name %>"</span>
+            </td>
+            <td class="py-3.5 px-6 text-right">
+              <div class="flex justify-end gap-2">
+                <%= button_to "Approve ✦", approve_admin_proofread_path(item), method: :patch,
+                  class: "border-2 border-black bg-white text-black hover:bg-accent-3 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
+                <%= button_to "Reject ✖", reject_admin_proofread_path(item), method: :patch,
+                  class: "border-2 border-black bg-white text-black hover:bg-accent-2 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <% if @order_items.empty? %>
+          <tr>
+            <td colspan="6" class="py-16 text-center text-gray-500 font-bold">
+              All custom names have been proofread. No pending requests.
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
