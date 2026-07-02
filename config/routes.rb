@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resource :settings, only: [:show, :update]
 
     resources :products
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show, :new, :create, :destroy]
     resources :proofread, only: [:index] do
       member do
         patch :approve

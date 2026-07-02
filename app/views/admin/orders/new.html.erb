@@ -1,0 +1,218 @@
+<div class="max-w-4xl mb-12">
+  <div class="mb-6">
+    <%= link_to admin_orders_path, class: "inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-gray-500 hover:text-black" do %>
+      <span>←</span> Back to Orders
+    <% end %>
+  </div>
+
+  <div class="mb-8">
+    <span class="sticker-badge sticker-badge-yellow mb-2">OFFLINE ORDER SYSTEM</span>
+    <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">New Offline Order ✦</h1>
+    <p class="text-xs font-bold text-gray-500 mt-1">Create a physical sale or cash pre-order. This follows the standard production & pickup flow.</p>
+  </div>
+
+  <%= form_with model: @order, url: admin_orders_path, class: "grid grid-cols-1 lg:grid-cols-3 gap-8" do |f| %>
+    <!-- Customer Details Form (Col-span 1 or 2) -->
+    <div class="lg:col-span-2 space-y-6">
+      <div class="neo-card bg-white p-6 space-y-6">
+        <h2 class="font-display font-black text-xl text-black border-b-2 border-black/10 pb-2">Customer Information</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <%= f.label :student_name, "Customer Name", class: "block text-xs font-black uppercase tracking-wider mb-2 text-gray-700" %>
+            <%= f.text_field :student_name, required: true, placeholder: "e.g. Ahmad Musa", class: "neo-input text-sm" %>
+          </div>
+
+          <div>
+            <%= f.label :phone, "Phone Number", class: "block text-xs font-black uppercase tracking-wider mb-2 text-gray-700" %>
+            <%= f.text_field :phone, required: true, placeholder: "e.g. 08031234567", class: "neo-input text-sm" %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <%= f.label :email, "Email Address", class: "block text-xs font-black uppercase tracking-wider mb-2 text-gray-700" %>
+            <%= f.email_field :email, required: true, placeholder: "e.g. ahmad@student.futminna.edu.ng", class: "neo-input text-sm" %>
+          </div>
+
+          <div>
+            <%= f.label :department, "Department", class: "block text-xs font-black uppercase tracking-wider mb-2 text-gray-700" %>
+            <%= f.text_field :department, required: true, placeholder: "e.g. Computer Science", class: "neo-input text-sm" %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <%= f.label :level, "Level", class: "block text-xs font-black uppercase tracking-wider mb-2 text-gray-700" %>
+            <%= f.select :level, ["100L", "200L", "300L", "400L", "500L", "Spillover", "Postgraduate"], {}, class: "neo-input text-sm bg-white" %>
+          </div>
+
+          <div>
+            <%= f.label :delivery_location, "Collection / Delivery Location", class: "block text-xs font-black uppercase tracking-wider mb-2 text-gray-700" %>
+            <%= f.select :delivery_location, [["Hostel (On Campus)", "hostel"], ["Off Campus (GK)", "off_campus"]], {}, class: "neo-input text-sm bg-white" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products catalog options -->
+      <div class="space-y-4">
+        <h2 class="font-display font-black text-xl text-black">Select Products</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <% @products.each_with_index do |product, idx| %>
+            <div class="neo-card bg-white p-6 flex flex-col justify-between product-card" data-base-price="<%= product.base_price %>" data-custom-name-fee="<%= product.custom_name_fee.to_i %>">
+              <div class="space-y-4">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-display font-black text-lg text-black"><%= product.name %></h3>
+                    <span class="text-xs text-accent-3 font-extrabold"><%= naira(product.base_price) %></span>
+                  </div>
+                  <span class="selected-badge bg-accent-1 border-2 border-black rounded-md px-2.5 py-0.5 text-xs font-black text-black hidden">✓ Active</span>
+                </div>
+
+                <!-- Quantity controls -->
+                <div class="flex items-center justify-between border-2 border-black p-2 rounded-lg bg-primary-bg/20">
+                  <span class="text-xs font-black uppercase tracking-wider text-gray-700">Quantity</span>
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" class="qty-btn w-8 h-8 rounded border-2 border-black bg-white font-black flex items-center justify-center cursor-pointer text-sm" data-target="qty_<%= idx %>">−</button>
+                    <%= number_field_tag "order[order_items][#{idx}][quantity]", 0, min: 0, max: 99,
+                      id: "qty_#{idx}",
+                      class: "qty-input w-10 text-center border-none bg-transparent text-sm font-black focus:outline-none" %>
+                    <button type="button" class="qty-btn w-8 h-8 rounded border-2 border-black bg-white font-black flex items-center justify-center cursor-pointer text-sm" data-target="qty_<%= idx %>">+</button>
+                  </div>
+                  <%= hidden_field_tag "order[order_items][#{idx}][product_id]", product.id %>
+                </div>
+
+                <!-- Options -->
+                <% if product.has_options? %>
+                  <% product.options.each do |option| %>
+                    <div class="space-y-1.5">
+                      <span class="text-xs font-black uppercase tracking-wider text-gray-700 block"><%= option["name"] %></span>
+                      <div class="flex gap-2 flex-wrap">
+                        <% option["values"].each do |value| %>
+                          <label class="cursor-pointer flex-1 min-w-[60px]">
+                            <input type="radio" name="order[order_items][<%= idx %>][selected_options][<%= option["name"] %>]" value="<%= value %>" class="hidden peer" <%= "checked" if option["values"].first == value %>>
+                            <span class="block text-center py-1.5 px-2 border-2 border-black rounded-lg text-xs font-extrabold bg-white text-black peer-checked:bg-black peer-checked:text-white transition-all shadow-[2px_2px_0px_0px_#000000] peer-checked:shadow-none hover:translate-y-0.5 peer-checked:translate-y-0.5"><%= value %></span>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <% if product.has_sizes? %>
+                    <div class="space-y-1.5">
+                      <span class="text-xs font-black uppercase tracking-wider text-gray-700 block">Size</span>
+                      <div class="flex gap-2">
+                        <% Product::SIZES.each do |size| %>
+                          <label class="flex-1 cursor-pointer">
+                            <input type="radio" name="order[order_items][<%= idx %>][size]" value="<%= size %>" class="hidden peer" <%= "checked" if size == "L" %>>
+                            <span class="block text-center py-1.5 px-2 border-2 border-black rounded-lg text-xs font-extrabold bg-white text-black peer-checked:bg-black peer-checked:text-white transition-all shadow-[2px_2px_0px_0px_#000000] peer-checked:shadow-none hover:translate-y-0.5 peer-checked:translate-y-0.5"><%= size %></span>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+
+                <!-- Custom print name -->
+                <% if product.has_custom_name? %>
+                  <div class="space-y-1.5">
+                    <label class="text-xs font-black uppercase tracking-wider text-gray-700 flex justify-between">
+                      <span>Custom Printed Name</span>
+                      <% if product.custom_name_fee.to_i > 0 %>
+                        <span class="text-accent-3 font-extrabold text-[10px]">(+<%= naira(product.custom_name_fee) %>)</span>
+                      <% end %>
+                    </label>
+                    <%= text_field_tag "order[order_items][#{idx}][custom_name]", nil,
+                      placeholder: "e.g. AHMAD",
+                      maxlength: 30,
+                      class: "neo-input text-xs py-2 px-3 placeholder:text-gray-400 font-sans" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Box (Col-span 1) -->
+    <div class="space-y-6">
+      <div class="neo-card bg-accent-1 p-6 border-3 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] sticky top-24">
+        <h2 class="font-display font-black text-xl text-black mb-4">Total Summary</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center text-sm border-b-2 border-black/10 pb-3">
+            <span class="font-black text-black">Grand Total</span>
+            <span class="font-sans font-black text-2xl text-black" id="total-amount-display">₦0</span>
+          </div>
+
+          <p class="text-xs font-bold text-black/70 leading-relaxed">Offline orders are automatically marked as <strong>PAID</strong>, and set to <strong>PROCESSING</strong> (In Production).</p>
+
+          <%= f.submit "Create Order ✦", class: "w-full neo-btn-black cursor-pointer text-center bg-black text-white" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+(function() {
+  // Quantity buttons handler
+  document.querySelectorAll('.qty-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.dataset.target;
+      const input = document.getElementById(targetId);
+      const isAdd = this.textContent.trim() === '+';
+      let currentVal = parseInt(input.value) || 0;
+      
+      if (isAdd) {
+        input.value = currentVal + 1;
+      } else {
+        if (currentVal > 0) input.value = currentVal - 1;
+      }
+      
+      // Trigger event to recalculate total
+      input.dispatchEvent(new Event('change'));
+    });
+  });
+
+  // Calculate live total
+  function calculateTotal() {
+    let total = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      const qtyInput = card.querySelector('.qty-input');
+      const qty = parseInt(qtyInput.value) || 0;
+      const badge = card.querySelector('.selected-badge');
+      
+      if (qty > 0) {
+        card.classList.add('border-accent-2', 'shadow-[6px_6px_0px_0px_#FFD700]', '-translate-y-0.5');
+        if (badge) badge.classList.remove('hidden');
+      } else {
+        card.classList.remove('border-accent-2', 'shadow-[6px_6px_0px_0px_#FFD700]', '-translate-y-0.5');
+        if (badge) badge.classList.add('hidden');
+      }
+      
+      if (qty <= 0) return;
+      const basePrice = parseInt(card.dataset.basePrice) || 0;
+      const customFee = parseInt(card.dataset.customNameFee) || 0;
+      const nameInput = card.querySelector('input[placeholder*="AHMAD"]');
+      const hasName = nameInput && nameInput.value.trim().length > 0;
+      
+      total += (basePrice + (hasName ? customFee : 0)) * qty;
+    });
+
+    document.getElementById('total-amount-display').textContent = '₦' + (total / 100).toLocaleString();
+  }
+
+  // Bind change/input listeners
+  document.querySelectorAll('.qty-input').forEach(el => {
+    el.addEventListener('change', calculateTotal);
+    el.addEventListener('input', calculateTotal);
+  });
+  document.querySelectorAll('input[placeholder*="AHMAD"]').forEach(el => {
+    el.addEventListener('input', calculateTotal);
+  });
+
+  calculateTotal();
+})();
+</script>

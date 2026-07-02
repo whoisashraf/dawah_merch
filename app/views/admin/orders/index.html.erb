@@ -1,8 +1,11 @@
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
   <div>
     <span class="sticker-badge sticker-badge-yellow mb-2">DATABASE VIEWS</span>
-    <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Orders ✦</h1>
-    <p class="text-xs font-bold text-gray-500 mt-1"><%= @orders.count %> total orders listed</p>
+    <div class="flex items-center gap-4 flex-wrap">
+      <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Orders ✦</h1>
+      <%= link_to "+ Offline Order", new_admin_order_path, class: "neo-btn-yellow py-1.5 px-3.5 text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 active:translate-y-1 transition-all rounded-pill font-black text-black border-2 border-black bg-accent-1" %>
+    </div>
+    <p class="text-xs font-bold text-gray-500 mt-1.5"><%= @orders.count %> total orders listed</p>
   </div>
   
   <!-- Tactile Tabs -->

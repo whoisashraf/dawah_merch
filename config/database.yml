@@ -4,8 +4,9 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: storage/development.sqlite3
+  adapter: postgresql
+  url: <%= ENV.fetch("DATABASE_URL") { "postgresql://localhost/dawah_merch_development" } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 test:
   <<: *default
