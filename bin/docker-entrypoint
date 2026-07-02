@@ -1,5 +1,13 @@
 #!/bin/bash -e
 
+# If PORT is set by PaaS (Heroku/Render/Belmo), configure Thruster HTTP_PORT to bind to it,
+# and override PORT to redirect Puma to a separate internal port (3000).
+if [ -n "$PORT" ]; then
+  export HTTP_PORT="$PORT"
+  export TARGET_PORT="3000"
+  export PORT="3000"
+fi
+
 # If running the rails server then create or migrate existing database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   ./bin/rails db:prepare
