@@ -37,8 +37,11 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    @product.update(active: false)
-    redirect_to admin_products_path, notice: "Product deactivated"
+    if @product.destroy
+      redirect_to admin_products_path, notice: "Product deleted", status: :see_other
+    else
+      redirect_to edit_admin_product_path(@product), alert: @product.errors.full_messages.to_sentence, status: :see_other
+    end
   end
 
   private
