@@ -6,6 +6,7 @@ services:
     runtime: ruby
     plan: starter
     buildCommand: ./bin/bundle install && ./bin/rails assets:precompile && ./bin/rails assets:clean
+    preDeployCommand: ./bin/rails db:prepare
     startCommand: ./bin/rails server
     healthCheckPath: /up
     disk:
