@@ -1,6 +1,6 @@
 <div class="mb-8">
   <span class="sticker-badge sticker-badge-yellow mb-2">CONTENT MODERATION</span>
-  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Proofread Names ✦</h1>
+  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Proofread Names</h1>
   <p class="text-xs font-bold text-gray-500 mt-1">Review, approve, or reject student names for custom garment printing.</p>
 </div>
 
@@ -30,9 +30,9 @@
             </td>
             <td class="py-3.5 px-6 text-right">
               <div class="flex justify-end gap-2">
-                <%= button_to "Approve ✦", approve_admin_proofread_path(item), method: :patch,
+                <%= button_to "Approve", approve_admin_proofread_path(item), method: :patch,
                   class: "border-2 border-black bg-white text-black hover:bg-accent-3 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
-                <%= button_to "Reject ✖", reject_admin_proofread_path(item), method: :patch,
+                <%= button_to "Reject", reject_admin_proofread_path(item), method: :patch,
                   class: "border-2 border-black bg-white text-black hover:bg-accent-2 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
               </div>
             </td>

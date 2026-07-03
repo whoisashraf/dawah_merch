@@ -1,10 +1,5 @@
 <!-- Hero Section -->
 <section class="relative overflow-hidden rounded-card mb-12 bg-primary-bg border-3 border-black shadow-[8px_8px_0px_0px_#000000] grain-bg">
-  <!-- Decorative Sparkles -->
-  <div class="absolute top-8 left-8 animate-float text-3xl font-black sparkle-icon">✦</div>
-  <div class="absolute top-12 right-12 animate-float-delayed text-4xl font-black sparkle-icon">✦</div>
-  <div class="absolute bottom-8 right-24 animate-float text-2xl font-black sparkle-icon">✦</div>
-
   <div class="relative px-6 py-16 md:py-24 md:px-12 text-center max-w-4xl mx-auto">
     <div class="inline-flex items-center gap-2 mb-6">
       <span class="sticker-badge sticker-badge-yellow text-xs">LIMITLESS DROP</span>
@@ -17,7 +12,7 @@
         DOXACLASM
       </span>
       <span class="inline-block font-sans text-3xl md:text-5xl font-black block mt-2 tracking-wider text-accent-2">
-        WARFARE ✦
+        WARFARE
       </span>
     </h1>
 
@@ -26,8 +21,8 @@
     </p>
 
     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-      <%= link_to "Grab Your Merch ↓", root_path(anchor: "products"), class: "neo-btn-black w-full sm:w-auto text-center" %>
-      <%= link_to "The Concept →", root_path(anchor: "manifesto"), class: "neo-btn-outline w-full sm:w-auto text-center" %>
+      <%= link_to "Grab Your Merch", root_path(anchor: "products"), class: "neo-btn-black w-full sm:w-auto text-center" %>
+      <%= link_to "The Concept", root_path(anchor: "manifesto"), class: "neo-btn-outline w-full sm:w-auto text-center" %>
     </div>
   </div>
 </section>
@@ -37,11 +32,11 @@
   <div class="flex whitespace-nowrap animate-marquee gap-8">
     <% 4.times do %>
       <span class="text-xs font-black uppercase tracking-widest flex items-center gap-6 text-black select-none">
-        FUTMINNA MSSN <span class="sparkle-icon">✦</span>
-        DAWAH WEEK 2026 <span class="sparkle-icon">✦</span>
-        LIMITLESS TRUTH <span class="sparkle-icon">✦</span>
-        AL-HAQ DESIGNS <span class="sparkle-icon">✦</span>
-        STREETWEAR DROP <span class="sparkle-icon">✦</span>
+        FUTMINNA MSSN
+        DAWAH WEEK 2026
+        LIMITLESS TRUTH
+        AL-HAQ DESIGNS
+        STREETWEAR DROP
       </span>
     <% end %>
   </div>
@@ -51,7 +46,7 @@
 <section id="manifesto" class="scroll-mt-24 my-20">
   <div class="text-center mb-12">
     <span class="text-xs font-black uppercase tracking-widest text-accent-3">THE CONCEPT</span>
-    <h2 class="font-display font-black text-3xl md:text-5xl mt-2">The Manifesto ✦</h2>
+    <h2 class="font-display font-black text-3xl md:text-5xl mt-2">The Manifesto</h2>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -65,7 +60,7 @@
         </p>
       </div>
       <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase text-black">
-        <span>LEARN THE WAY</span> <span>→</span>
+        <span>LEARN THE WAY</span>
       </div>
     </div>
 
@@ -77,7 +72,7 @@
       </div>
       <div>
         <p class="text-xs font-bold text-black uppercase tracking-wider">Pre-orders close soon.</p>
-        <p class="text-[10px] text-gray-700 font-bold mt-1">Once print runs end, no restocks. ✦</p>
+        <p class="text-[10px] text-gray-700 font-bold mt-1">Once print runs end, no restocks.</p>
       </div>
     </div>
 
@@ -97,7 +92,6 @@
       <div>
         <div class="flex justify-between items-start">
           <span class="sticker-badge sticker-badge-yellow">EXCLUSIVE QUALITY</span>
-          <span class="sparkle-icon text-white text-2xl animate-spin-slow">✦</span>
         </div>
         <h3 class="font-display font-black text-2xl md:text-3xl my-4 text-white">Garments Crafted with Conviction</h3>
         <p class="text-gray-400 text-xs md:text-sm leading-relaxed max-w-lg">
@@ -114,7 +108,7 @@
   <section id="products" class="scroll-mt-24 my-20">
     <div class="text-center mb-12">
       <span class="text-xs font-black uppercase tracking-widest text-accent-3">STEP 01</span>
-      <h2 class="font-display font-black text-3xl md:text-5xl mt-2">Choose Your Gear ✦</h2>
+      <h2 class="font-display font-black text-3xl md:text-5xl mt-2">Choose Your Gear</h2>
       <p class="text-gray-600 text-sm mt-2 max-w-md mx-auto">Select quantities and styles below. Your total is tracked dynamically.</p>
     </div>
 
@@ -170,7 +164,7 @@
           <div class="space-y-4">
             <div>
               <h3 class="font-display font-black text-xl text-black uppercase tracking-tight"><%= product.name %></h3>
-              <p class="text-xs text-gray-500 mt-1 font-bold">LIMITED SERIES DROP ✦</p>
+              <p class="text-xs text-gray-500 mt-1 font-bold">LIMITED SERIES DROP</p>
             </div>
 
             <!-- Quantity Tactile controls -->
@@ -252,7 +246,7 @@
         </div>
       </div>
       <button type="button" id="continue-btn" class="neo-btn-black py-2.5 px-6 text-xs md:text-sm shrink-0" disabled>
-        Continue ✦
+        Continue
       </button>
     </div>
   </div>
@@ -327,7 +321,7 @@
           <svg class="w-4 h-4 text-black shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           Secured by Paystack
         </div>
-        <%= form.submit "Proceed to Payment ✦",
+        <%= form.submit "Proceed to Payment",
           class: "neo-btn-black w-full sm:w-auto" %>
       </div>
     </section>
@@ -346,13 +340,13 @@
 <div id="faq" class="my-20 scroll-mt-24">
   <div class="text-center mb-12">
     <span class="text-xs font-black uppercase tracking-wider text-accent-3">HAVE QUESTIONS?</span>
-    <h2 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">FAQs ✦</h2>
+    <h2 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">FAQs</h2>
   </div>
   <div class="max-w-3xl mx-auto space-y-6">
     <details class="group neo-card p-6 bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden border-3 border-black">
       <summary class="flex justify-between items-center font-bold text-black text-base md:text-lg">
         <span class="font-display font-black uppercase tracking-tight">When will the pre-order close?</span>
-        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">✦</span>
+        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">+</span>
       </summary>
       <p class="mt-4 text-sm text-gray-700 font-medium leading-relaxed border-t-2 border-black/5 pt-4">
         The pre-order runs until the end of the Dawah Week. We only manufacture what is ordered during this window to ensure zero waste.
@@ -361,7 +355,7 @@
     <details class="group neo-card p-6 bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden border-3 border-black">
       <summary class="flex justify-between items-center font-bold text-black text-base md:text-lg">
         <span class="font-display font-black uppercase tracking-tight">How do I collect my order?</span>
-        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">✦</span>
+        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">+</span>
       </summary>
       <p class="mt-4 text-sm text-gray-700 font-medium leading-relaxed border-t-2 border-black/5 pt-4">
         Once production is finished (approx. 2 weeks post-order), you'll receive an email/phone notification. You can collect your gear at the designated MSSN points in Bosso or GK campus, or have it delivered to your hostel.
@@ -370,7 +364,7 @@
     <details class="group neo-card p-6 bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden border-3 border-black">
       <summary class="flex justify-between items-center font-bold text-black text-base md:text-lg">
         <span class="font-display font-black uppercase tracking-tight">Can I customize the name on my gear?</span>
-        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">✦</span>
+        <span class="transition-transform group-open:rotate-45 text-accent-3 text-xl font-bold">+</span>
       </summary>
       <p class="mt-4 text-sm text-gray-700 font-medium leading-relaxed border-t-2 border-black/5 pt-4">
         Yes! For custom-enabled products, there is a field to enter your preferred print name for a small extra fee. All custom names are proofread by our team.

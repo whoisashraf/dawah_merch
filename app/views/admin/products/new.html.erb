@@ -5,7 +5,7 @@
     <% end %>
   </div>
 
-  <h1 class="font-display font-black text-3xl md:text-4xl text-black mb-8">New Product ✦</h1>
+  <h1 class="font-display font-black text-3xl md:text-4xl text-black mb-8">New Product</h1>
 
   <%= form_with model: @product, url: admin_products_path, class: "space-y-6" do |f| %>
     <div class="neo-card bg-white p-6 space-y-6">
@@ -73,7 +73,7 @@
     </div>
 
     <div class="flex gap-4">
-      <%= f.submit "Create Product ✦", class: "neo-btn-black py-3 px-8 cursor-pointer" %>
+      <%= f.submit "Create Product", class: "neo-btn-black py-3 px-8 cursor-pointer" %>
       <%= link_to "Cancel", admin_products_path, class: "neo-btn-outline py-3 px-8 text-center" %>
     </div>
   <% end %>

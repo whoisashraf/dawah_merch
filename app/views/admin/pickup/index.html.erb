@@ -1,6 +1,6 @@
 <div class="mb-8">
   <span class="sticker-badge sticker-badge-yellow mb-2">PICKUP LOGISTICS</span>
-  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Pickup Tracker ✦</h1>
+  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Pickup Tracker</h1>
   <p class="text-xs font-bold text-gray-500 mt-1">Search student name or reference to verify payment and mark as collected.</p>
 </div>
 
@@ -9,7 +9,7 @@
   <%= form_with url: admin_pickup_path, method: :get, class: "flex flex-col sm:flex-row gap-3" do |f| %>
     <%= text_field_tag :q, params[:q], placeholder: "Search by reference, student name, or phone...",
       class: "flex-1 neo-input text-sm" %>
-    <%= submit_tag "Search ✦", class: "neo-btn-black py-2.5 px-6 text-xs cursor-pointer" %>
+    <%= submit_tag "Search", class: "neo-btn-black py-2.5 px-6 text-xs cursor-pointer" %>
   <% end %>
 </div>
 
@@ -46,7 +46,7 @@
             <td class="py-3.5 px-6 text-right">
               <div class="flex justify-end gap-2">
                 <% if order.status != "collected" %>
-                  <%= button_to "Mark Collected ✦", admin_pickup_collect_path(order), method: :patch,
+                  <%= button_to "Mark Collected", admin_pickup_collect_path(order), method: :patch,
                     class: "border-2 border-black bg-white text-black hover:bg-black hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
                 <% end %>
                 <a href="<%= order.whatsapp_url %>" target="_blank" rel="noopener"

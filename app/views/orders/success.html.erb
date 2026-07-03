@@ -11,7 +11,7 @@
           <% end %>
         </div>
         <div>
-          <span class="sticker-badge sticker-badge-yellow text-xs">ORDER CONFIRMED ✦</span>
+          <span class="sticker-badge sticker-badge-yellow text-xs">ORDER CONFIRMED</span>
           <h1 class="font-display font-black text-2xl md:text-3xl text-white mt-2">Doxaclasm Receipt</h1>
         </div>
         <div class="text-6xl animate-float">🔥</div>
@@ -30,12 +30,11 @@
         <!-- Join WhatsApp Group Button (Sticker style) -->
         <% if @whatsapp_group_link.present? %>
           <div class="bg-white border-3 border-black rounded-card p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center relative overflow-hidden">
-            <div class="absolute -top-2 -right-2 text-2xl font-black sparkle-icon animate-float">✦</div>
             <span class="text-2xl block mb-2">📢</span>
             <h3 class="font-display font-black text-lg text-black mb-1">Join the Dawah Week Community</h3>
             <p class="text-xs text-gray-600 mb-4 max-w-sm mx-auto font-medium">Get real-time updates on order collection dates, event schedules, and join the conversation.</p>
             <a href="<%= @whatsapp_group_link %>" target="_blank" rel="noopener" class="neo-btn-yellow w-full py-3">
-              Join WhatsApp Group ✦
+              Join WhatsApp Group
             </a>
           </div>
         <% end %>

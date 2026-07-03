@@ -2,7 +2,7 @@
   <div>
     <span class="sticker-badge sticker-badge-yellow mb-2">DATABASE VIEWS</span>
     <div class="flex items-center gap-4 flex-wrap">
-      <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Orders ✦</h1>
+      <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Orders</h1>
       <%= link_to "+ Offline Order", new_admin_order_path, class: "neo-btn-yellow py-1.5 px-3.5 text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 active:translate-y-1 transition-all rounded-pill font-black text-black border-2 border-black bg-accent-1" %>
     </div>
     <p class="text-xs font-bold text-gray-500 mt-1.5"><%= @orders.count %> total orders listed</p>
@@ -34,14 +34,14 @@
           <div class="min-w-0 flex-1">
             <p class="text-sm font-black text-black"><%= item.order.student_name %></p>
             <p class="text-xs text-gray-600 mt-1 font-semibold">
-              Product: <span class="text-black font-extrabold"><%= item.product.name %></span> ✦ 
+              Product: <span class="text-black font-extrabold"><%= item.product.name %></span>
               Proposed Print: <span class="bg-accent-1 px-1.5 py-0.5 rounded border border-black font-mono text-black font-black">"<%= item.custom_name %>"</span>
               <span class="text-gray-400 font-normal">· Ref: <%= item.order.reference %></span>
             </p>
           </div>
           <div class="flex gap-2 shrink-0">
-            <%= button_to "Approve ✦", approve_admin_proofread_path(item), method: :patch, class: "border-2 border-black bg-white text-black hover:bg-accent-3 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
-            <%= button_to "Reject ✖", reject_admin_proofread_path(item), method: :patch, class: "border-2 border-black bg-white text-black hover:bg-accent-2 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
+            <%= button_to "Approve", approve_admin_proofread_path(item), method: :patch, class: "border-2 border-black bg-white text-black hover:bg-accent-3 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
+            <%= button_to "Reject", reject_admin_proofread_path(item), method: :patch, class: "border-2 border-black bg-white text-black hover:bg-accent-2 hover:text-white px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer shadow-[2px_2px_0px_0px_#000000] hover:shadow-none hover:translate-y-0.5" %>
           </div>
         </div>
       <% end %>
@@ -84,11 +84,12 @@
               <span class="text-xs uppercase font-extrabold text-black"><%= order.status.humanize %></span>
             </td>
             <td class="py-3.5 px-6 text-right">
-              <div class="flex items-center justify-end gap-3.5">
-                <%= link_to "View →", admin_order_path(order), class: "text-accent-3 hover:text-black font-bold transition-colors" %>
+              <div class="flex items-center justify-end gap-3">
+                <%= link_to "View", admin_order_path(order), class: "text-accent-3 hover:text-black font-bold transition-colors text-xs uppercase tracking-wider" %>
+                <span class="text-gray-300 font-normal">|</span>
                 <%= button_to "Delete", admin_order_path(order), method: :delete,
                   form: { data: { turbo_confirm: "Are you sure you want to permanently delete order ##{order.reference}?" } },
-                  class: "text-accent-2 hover:text-red-700 font-bold transition-colors border-none bg-transparent cursor-pointer text-xs" %>
+                  class: "text-accent-2 hover:text-red-700 font-bold transition-colors border-none bg-transparent cursor-pointer text-xs uppercase tracking-wider" %>
               </div>
             </td>
           </tr>

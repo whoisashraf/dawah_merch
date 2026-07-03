@@ -1,6 +1,6 @@
 <div class="mb-8">
   <span class="sticker-badge sticker-badge-yellow mb-2">MANAGEMENT PORTAL</span>
-  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Dashboard ✦</h1>
+  <h1 class="font-display font-black text-3xl md:text-5xl mt-2 text-black">Dashboard</h1>
   <p class="text-sm font-semibold text-gray-500 mt-1">Real-time Dawah Week merchandise pre-order statistics.</p>
 </div>
 
@@ -36,7 +36,7 @@
       <p class="text-3xl font-black text-black mt-2"><%= @pending_proofread %></p>
     </div>
     <p class="text-xs font-black uppercase tracking-wider text-black mt-4 flex items-center gap-1">
-      Proofread Names <%= "✦" if @pending_proofread > 0 %>
+      Proofread Names
     </p>
   </a>
 
@@ -46,14 +46,14 @@
       <span class="text-[10px] font-black uppercase tracking-widest text-black">Ready for Pickup</span>
       <p class="text-3xl font-black text-black mt-2"><%= @uncollected %></p>
     </div>
-    <p class="text-xs font-black uppercase tracking-wider text-black mt-4">Orders to Collect →</p>
+    <p class="text-xs font-black uppercase tracking-wider text-black mt-4">Orders to Collect</p>
   </a>
 </div>
 
 <!-- Recent Orders Table -->
 <div class="neo-card bg-white overflow-hidden">
   <div class="px-6 py-5 border-b-3 border-black flex items-center justify-between bg-primary-bg/20">
-    <h2 class="font-display font-black text-xl text-black">Recent Paid Orders ✦</h2>
+    <h2 class="font-display font-black text-xl text-black">Recent Paid Orders</h2>
     <div class="flex gap-2">
       <%= link_to "+ Offline Order", new_admin_order_path, class: "neo-btn-yellow py-1.5 px-4 text-xs font-black text-black border-2 border-black rounded-pill bg-accent-1" %>
       <%= link_to "View All", admin_orders_path, class: "neo-btn-black py-1.5 px-4 text-xs" %>
